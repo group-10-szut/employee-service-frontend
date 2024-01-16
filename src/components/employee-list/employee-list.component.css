@@ -1,0 +1,47 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+thead {
+  color: var(--color-lightblue);
+}
+tr {
+  border-bottom: 2px solid var(--color-lightgray);
+  overflow-wrap: break-word;
+  height: 10vh;
+}
+th {
+  max-width: 30vw;
+}
+
+img {
+  border-radius: 50%;
+  margin-left: 2vw;
+}
+span {
+  margin-left: 2vw;
+}
+.material-symbols-outlined {
+  font-size: 6vh;
+  color: var(--color-lightblue);
+  cursor: pointer;
+}
+.material-symbols-outlined:hover {
+  color: var(--color-actiongreen);
+}
+#delete-btn:hover {
+  color: var(--color-dangerorange);
+}
+#search {
+  height: 4vh;
+  border: 2px solid var(--color-lightblue);
+  border-radius: 2vh;
+  font-family: 'Quicksand', sans-serif;
+  margin-left: 2vw;
+}
+input[type="text"]::placeholder {
+  padding: 10px;
+}
+
+

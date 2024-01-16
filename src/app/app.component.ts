@@ -1,15 +1,23 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import {EmployeeListComponent} from "./employee-list/employee-list.component";
+import { NavBarComponent } from '../components/nav-bar/nav-bar.component';
+import { MainComponent } from '../components/main/main.component';
+import { FooterComponent } from '../components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, EmployeeListComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    NavBarComponent,
+    MainComponent,
+    FooterComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'lf10StarterNew';
+  title = 'angular-employee-testrange';
 }

@@ -1,0 +1,50 @@
+<table>
+  <thead>
+  <tr>
+    <th></th>
+    <th><span>Name</span></th>
+    <th><span>Qualifikation</span></th>
+    <th>
+      <input type="text" placeholder="Suche" id="search" />
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (iEmployee of employeeList; track iEmployee) {
+      <tr>
+        <th>
+          <img
+            src="https://i.pravatar.cc/50?img={{ iEmployee?.id }}"
+            alt="User Avatar"
+            class="avatar"
+          />
+        </th>
+        <th>
+          <span>{{ iEmployee?.firstName }}</span>
+          <span>{{ iEmployee?.lastName }}</span>
+        </th>
+        <th>
+          <span *ngFor="let skill of iEmployee.skillSet">{{
+              skill.skill
+            }}</span>
+        </th>
+        <th>
+          <span class="material-symbols-outlined" title="Weitere Infos">
+            expand_circle_down
+          </span>
+          <span class="material-symbols-outlined" title="Bearbeiten">
+            build_circle
+          </span>
+          <span
+            class="material-symbols-outlined"
+            id="delete-btn"
+            title="Löschen"
+          >
+            cancel
+          </span>
+        </th>
+      </tr>
+    }
+  </tbody>
+</table>
+

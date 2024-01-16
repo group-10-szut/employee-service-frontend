@@ -1,0 +1,19 @@
+.navbar {
+  margin-left: 10vw;
+  display: flex;
+}
+h3 {
+  margin-left: 10vw ;
+}
+.active {
+  color: var(--color-darkblue);
+  /*text-decoration: underline;*/
+  /*text-decoration-thickness: 2px;*/
+}
+.inactive {
+  color: var(--color-lightgray);
+  cursor: pointer;
+}
+.inactive:hover {
+  color: var(--color-darkblue);
+}
