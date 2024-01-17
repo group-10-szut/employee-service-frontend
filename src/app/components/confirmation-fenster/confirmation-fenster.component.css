@@ -1,0 +1,20 @@
+/* confirmation.component.css */
+.confirmation-modal {
+  font-size: 3vh;
+  color: var(--color-darkblue);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--color-lightblue);
+  border-radius: 2vh;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+button {
+  margin: 5px;
+}

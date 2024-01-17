@@ -1,0 +1,38 @@
+/* info.component.css */
+.info-modal {
+  font-size: 3vh;
+  color: var(--color-darkblue);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--color-lightblue);
+  border-radius: 2vh;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; /* Make it a circle */
+  font-size: 20px;
+  font-weight: bold;
+  color: black; /* Initial color */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s; /* Add a smooth transition for color change */
+}
+
+.close-btn:hover {
+  color: white; /* Color when hovered */
+  background-color: #ff2e2e; /* Add a background color when hovered for better visibility */
+}
