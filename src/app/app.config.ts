@@ -1,14 +1,19 @@
-import { APP_INITIALIZER, ApplicationConfig} from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {APP_INITIALIZER, ApplicationConfig, Provider} from '@angular/core';
+import {provideRouter} from '@angular/router';
 
-import { routes } from './app.routes';
-import { KeycloakService } from "keycloak-angular";
+import {routes} from './app.routes';
+import {KeycloakBearerInterceptor, KeycloakService} from "keycloak-angular";
+import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 
+/**
+ * Reference from doc: https://github.com/mauriciovigolo/keycloak-angular?tab=readme-ov-file#setup
+ * @param keycloak
+ */
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
       config: {
-        url: 'https://keycloak.szut.dev/auth',
+        url: 'https://keycloak.szut.dev/auth',  // URL of the Keycloak server
         realm: 'szut',
         clientId: 'employee-management-service-frontend'
       },
@@ -19,18 +24,41 @@ function initializeKeycloak(keycloak: KeycloakService) {
       },
       enableBearerInterceptor: true,
       bearerPrefix: 'Bearer',
+      bearerExcludedUrls: []  // URLs excluded from Bearer token addition
     });
 }
 
+/**
+ * Provider for Keycloak Bearer Interceptor
+ * About HTTP interceptors: https://angular.io/guide/http-intercept-requests-and-responses
+ */
+const KeycloakBearerInterceptorProvider: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: KeycloakBearerInterceptor,
+  multi: true
+};
+
+/**
+ * Provider for Keycloak Initialization
+ * About APP_INITIALIZER: https://angular.io/api/core/APP_INITIALIZER#description
+ */
+const KeycloakInitializerProvider: Provider = {
+  provide: APP_INITIALIZER,
+  useFactory: initializeKeycloak,
+  multi: true,
+  deps: [KeycloakService]
+}
+
+/**
+ * Exported configuration for the application
+ * Reference: https://github.com/mauriciovigolo/keycloak-angular/issues/535
+ */
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeKeycloak,
-      multi: true,
-      deps: [KeycloakService]
-    },
-    KeycloakService // <-- add your missing provider here
+    provideHttpClient(withInterceptorsFromDi()), // Provides HttpClient with interceptors
+    KeycloakInitializerProvider, // Initializes Keycloak
+    KeycloakBearerInterceptorProvider, // Provides Keycloak Bearer Interceptor
+    KeycloakService, // Service for Keycloak
+    provideRouter(routes) // Provides routing for the application
   ]
 };
