@@ -1,0 +1,42 @@
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th><span>ID</span></th>
+      <th><span>Qualifikation</span></th>
+      <th>
+        <input type="text" placeholder="Suche" id="search" />
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (skill of skillList; track skill) {
+      <tr>
+        <th></th>
+        <th>
+          <span>{{ skill?.id }}</span>
+        </th>
+        <th>
+          <span class="skill">{{ skill?.skill }}</span>
+        </th>
+        <th>
+          <span class="material-symbols-outlined" title="Weitere Infos">
+            expand_circle_down
+          </span>
+          <span class="material-symbols-outlined" title="Bearbeiten">
+            build_circle
+          </span>
+          <span
+            class="material-symbols-outlined"
+            id="delete-btn"
+            title="Löschen"
+          >
+            cancel
+          </span>
+        </th>
+      </tr>
+    }
+  </tbody>
+
+</table>
+<div class="foundation"></div>
