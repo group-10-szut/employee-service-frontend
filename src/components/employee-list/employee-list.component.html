@@ -10,21 +10,21 @@
   </tr>
   </thead>
   <tbody>
-    @for (iEmployee of employeeList; track iEmployee) {
+    @for (employee of employeeList; track employee) {
       <tr>
         <th>
           <img
-            src="https://i.pravatar.cc/50?img={{ iEmployee?.id }}"
+            src="https://i.pravatar.cc/50?img={{ employee?.id }}"
             alt="User Avatar"
             class="avatar"
           />
         </th>
         <th>
-          <span>{{ iEmployee?.firstName }}</span>
-          <span>{{ iEmployee?.lastName }}</span>
+          <span>{{ employee?.firstName }}</span>
+          <span>{{ employee?.lastName }}</span>
         </th>
         <th>
-          <span *ngFor="let skill of iEmployee.skillSet">{{
+          <span *ngFor="let skill of employee.skillSet">{{
               skill.skill
             }}</span>
         </th>

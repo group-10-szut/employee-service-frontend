@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgForOf, NgOptimizedImage } from '@angular/common';
-import { IEmployee } from '../../model/employee';
+import {EmployeeGet} from "../../model/employee-get";
 
 @Component({
   selector: 'app-employee-list',
@@ -10,8 +10,8 @@ import { IEmployee } from '../../model/employee';
   styleUrl: './employee-list.component.css',
 })
 export class EmployeeListComponent {
-  @Input() iEmployee?: IEmployee;
-  employeeList: IEmployee[] = [
+  @Input() employee?: EmployeeGet;
+  employeeList: EmployeeGet[] = [
     {
       id: 0,
       lastName: 'Müller',

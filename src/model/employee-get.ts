@@ -1,4 +1,6 @@
-export interface IEmployee {
+import {SkillGet} from "./skill-get";
+
+export interface EmployeeGet {
   id: number;
   lastName: string;
   firstName: string;
@@ -6,10 +8,5 @@ export interface IEmployee {
   postcode: string;
   city: string;
   phone: string;
-  skillSet: Skill[];
-}
-
-export interface Skill {
-  skill: string;
-  id: number;
+  skillSet: SkillGet[];
 }
