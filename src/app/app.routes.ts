@@ -1,6 +1,6 @@
 import {Routes} from '@angular/router';
 import {AuthGuard} from "./guard/auth.guard";
-import {EmployeeListComponent} from "./employee-list/employee-list.component";
+import {EmployeeListComponent} from "../components/employee-list/employee-list.component";
 
 export const routes: Routes = [
   {path: '', component: EmployeeListComponent, canActivate: [AuthGuard]},
