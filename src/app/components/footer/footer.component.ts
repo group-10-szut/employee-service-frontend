@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {SharedService} from "../../shared.service";
+import {ShareService} from "../../services/share.service";
 
 @Component({
   selector: 'app-footer',
@@ -9,11 +9,10 @@ import {SharedService} from "../../shared.service";
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-  constructor(public sharedService : SharedService) {
-
+  constructor(public shareService: ShareService) {
   }
 
-  showEmployeeForm() {
-    sharedService.showEmployeeForm();
+  openEmployeeForm() {
+    this.shareService.openEmployeeForm();
   }
 }
