@@ -52,18 +52,6 @@
         </div>
 
         <div class="grid-item" style="margin-bottom: 5px">
-          <div>
-            <div style="margin-bottom: 10px">
-              <label>Qualifikationen</label>
-            </div>
-            <select name="Qualifikationen" multiple>
-              <option value="Java">Java</option>
-              <option value="Cobol">Cobol</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="grid-item" style="margin-bottom: 5px">
           <div style="margin-bottom: 10px">
             <label for="postleitzahl">Postleitzahl</label>
           </div>
@@ -74,17 +62,31 @@
 
         <div class="grid-item" style="margin-bottom: 5px">
           <div>
+            <div style="margin-bottom: 10px">
+              <label>Qualifikationen</label>
+            </div>
+            <select name="Qualifikationen" multiple [(ngModel)]="selectedSkills">
+              <option *ngFor="let quali of skillsString" [value]="quali">
+                {{ quali }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+
+
+        <div class="grid-item" style="margin-bottom: 5px">
+          <div>
             <label></label>
           </div>
         </div>
 
         <div class="grid-item">
-          <button>Speichern</button>
+          <button type="submit" (click)="saveEmployee()">Speichern</button>
         </div>
         <div class="grid-item">
-          <button class="button-cancel">Abbrechen</button>
+          <button class="button-cancel" type="reset" (click)="closeForm()">Abbrechen</button>
         </div>
-
       </div>
     </form>
   </div>
