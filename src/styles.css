@@ -43,7 +43,16 @@ button:hover {
   background-color: var(--color-actiongreen);
   color: var(--color-darkblue);
 }
-
+.button-cancel{
+  border:2px solid var(--color-lightblue);
+  border-radius: 2vh;
+  padding: 2vh;
+  font-size: large;
+  font-family: 'Quicksand', sans-serif;
+  color: var(--color-lightblue);
+  cursor: pointer;
+  background-color: white;
+}
 
 
 

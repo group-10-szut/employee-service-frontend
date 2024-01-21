@@ -1,87 +1,93 @@
-<div class="card" style="width: 700px; border: 2px solid #36C1ED">
+<div class="card" style="width: 500px; border: 3px solid #36C1ED; border-radius: 2vw; background-color: white">
   <div class="card-title" style="text-align: center; margin-top: 40px; color: #12135d">
     <h3>Mitarbeiterinformationen eingeben</h3>
   </div>
 
   <div class="card-body">
     <form>
+      <div class="grid-container">
+        <div class="grid-item">
+          <div style="margin-bottom: 10px">
+            <label for="vorname">Vorname</label>
+          </div>
+          <div>
+            <input id="vorname" type="text" formControlName="vorname" placeholder="Vorname">
+          </div>
+        </div>
 
-      <div class="row" style="margin-bottom: 5px">
-        <div class="col-sm-6 col-lg-6">
-          <label for="vorname">Vorname</label>
+        <div class="grid-item">
+          <div style="margin-bottom: 10px">
+            <label>Stadt</label>
+          </div>
+          <div>
+            <input id="stadt" type="text" formControlName="stadt" placeholder="Stadt">
+          </div>
         </div>
-        <div class="col-sm-6 col-lg-6">
-          <label>Stadt</label>
-        </div>
-      </div>
 
-      <div class="row" style="margin-bottom: 5px">
-        <div class="col-sm-6 col-lg-6">
-          <input id="vorname" type="text" formControlName="vorname" placeholder="Vorname">
+        <div class="grid-item">
+          <div style="margin-bottom: 10px">
+            <label for="nachname">Nachname</label>
+          </div>
+          <div>
+            <input id="nachname" type="text" formControlName="nachname" placeholder="Nachname">
+          </div>
         </div>
-        <div class="col-sm-6 col-lg-6">
-          <input id="stadt" type="text" formControlName="stadt" placeholder="Stadt">
-        </div>
-      </div>
 
-      <div class="row" style="margin-bottom: 5px">
-        <div class="col-sm-6 col-lg-6" style="margin-bottom: 5px">
-          <label for="nachname">Nachname</label>
+        <div class="grid-item">
+          <div style="margin-bottom: 10px">
+            <label for="telefonnummer">Telefonnummer</label>
+          </div>
+          <div>
+            <input id="telefonnummer" type="text" formControlName="telefonnummer" placeholder="Telefonnummer">
+          </div>
         </div>
-        <div class="col-sm-6 col-lg-6" style="margin-bottom: 5px">
-          <label>Telefonnummer</label>
-        </div>
-      </div>
 
-      <div class="row" style="margin-bottom: 5px">
-        <div class="col-sm-6 col-lg-6">
-          <input id="nachname" type="text" formControlName="nachname" placeholder="Nachname">
+        <div class="grid-item" style="margin-bottom: 5px">
+          <div style="margin-bottom: 10px">
+            <label for="strasse">Straße und Hausnummer</label>
+          </div>
+          <div>
+            <input id="strasse" type="text" formControlName="strasse" placeholder="Straße und Hausnummer">
+          </div>
         </div>
-        <div class="col-sm-6 col-lg-6">
-          <input id="telefonnummer" type="text" formControlName="telefonnummer" placeholder="Telefonnummer">
-        </div>
-      </div>
 
-      <div class="row" style="margin-bottom: 5px">
-        <div class="col-sm-6 col-lg-6" style="margin-bottom: 5px">
-          <label for="strasse">Straße und Hausnummer</label>
+        <div class="grid-item" style="margin-bottom: 5px">
+          <div>
+            <div style="margin-bottom: 10px">
+              <label>Qualifikationen</label>
+            </div>
+            <select name="Qualifikationen" multiple>
+              <option value="Java">Java</option>
+              <option value="Cobol">Cobol</option>
+            </select>
+          </div>
         </div>
-        <div class="col-sm-6 col-lg-6" style="margin-bottom: 5px">
-          <label>Qualifikationen</label>
-        </div>
-      </div>
 
-      <div class="row" style="margin-bottom: 5px">
-        <div class="col-sm-6 col-lg-6">
-          <input id="strasse" type="text" formControlName="strasse" placeholder="Straße und Hausnummer">
+        <div class="grid-item" style="margin-bottom: 5px">
+          <div style="margin-bottom: 10px">
+            <label for="postleitzahl">Postleitzahl</label>
+          </div>
+          <div>
+            <input id="postleitzahl" type="text" formControlName="postleitzahl" placeholder="Postleitzahl">
+          </div>
         </div>
-        <div class="col-sm-6 col-lg-6">
-          <input id="qualifikationen" type="text" formControlName="qualifikationen" placeholder="Qualifikationen">
-        </div>
-      </div>
 
-      <div class="row" style="margin-bottom: 5px">
-        <div class="col-sm-6 col-lg-6" style="margin-bottom: 5px">
-          <label for="postleitzahl">Postleitzahl</label>
+        <div class="grid-item" style="margin-bottom: 5px">
+          <div>
+            <label></label>
+          </div>
         </div>
-      </div>
 
-      <div class="row" style="margin-bottom: 5px">
-        <div class="col-sm-6 col-lg-6">
-          <input id="postleitzahl" type="text" formControlName="postleitzahl" placeholder="Postleitzahl">
+        <div class="grid-item">
+          <button>Speichern</button>
+        </div>
+        <div class="grid-item">
+          <button class="button-cancel">Abbrechen</button>
         </div>
 
       </div>
     </form>
-
-    <div class="row" style="margin-bottom: 5px">
-      <div class="col-sm-6 col-lg-6">
-        <button>Speichern</button>
-      </div>
-      <div class="col-sm-6 col-lg-6">
-        <button>Abbrechen</button>
-      </div>
-    </div>
   </div>
-</div>
 
+
+</div>
