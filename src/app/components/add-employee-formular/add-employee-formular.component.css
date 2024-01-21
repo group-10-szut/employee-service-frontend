@@ -2,18 +2,6 @@ label {
   color: #36C1ED;
 }
 
-/*.grid-container {
-  display: grid;
-  grid-template-columns: 250px 250px;
-  padding: 10px;
-  margin-left: 25px;
-}
-.grid-item {
-  padding: 10px;
-  font-size: 17px;
-  text-align: left;
-}*/
-
 .grid-container {
   display: grid;
   grid-template-columns: 250px 250px;
