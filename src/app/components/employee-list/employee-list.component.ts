@@ -1,16 +1,27 @@
 import { Component, Input } from '@angular/core';
-import { NgForOf, NgOptimizedImage } from '@angular/common';
-import {EmployeeGet} from "../../model/employee-get";
+import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
+import { EmployeeGet } from '../../model/employee-get';
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [NgOptimizedImage, NgForOf],
+  imports: [NgOptimizedImage, NgForOf, NgIf],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css',
 })
 export class EmployeeListComponent {
   @Input() employee?: EmployeeGet;
+  // isOpen = false;
+  expandedEmployeeId: number | null = null;
+
+  toggleExpansion(employeeId: number): void {
+    if (this.expandedEmployeeId === employeeId) {
+      this.expandedEmployeeId = null; // Collapse if already expanded
+    } else {
+      this.expandedEmployeeId = employeeId; // Expand otherwise
+    }
+  }
+
   employeeList: EmployeeGet[] = [
     {
       id: 0,
@@ -186,5 +197,6 @@ export class EmployeeListComponent {
       ],
     },
   ];
+  expandedIndex: any;
+  i: any;
 }
-
