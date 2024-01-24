@@ -1,4 +1,4 @@
-import {SkillGet} from "./skill-get";
+import { SkillGet } from './skill-get';
 
 export interface EmployeeGet {
   id: number;
