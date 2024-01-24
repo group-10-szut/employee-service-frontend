@@ -1,5 +1,5 @@
 .navbar {
-  margin-left: 10vw;
+  margin: 0 10vw 0 10vw;
   display: flex;
 }
 h3 {
