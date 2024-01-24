@@ -1,50 +1,75 @@
-<table>
+<table class="list">
   <thead>
-  <tr>
-    <th></th>
-    <th><span>Name</span></th>
-    <th><span>Qualifikation</span></th>
-    <th>
-      <input type="text" placeholder="Suche" id="search" />
-    </th>
-  </tr>
+    <tr class="list-row">
+      <th></th>
+      <th><span>Name</span></th>
+      <th><span>Qualifikation</span></th>
+      <th>
+        <input type="text" placeholder="Suche" id="search" />
+      </th>
+    </tr>
   </thead>
   <tbody>
-    @for (employee of employeeList; track employee) {
-      <tr>
-        <th>
-          <img
-            src="https://i.pravatar.cc/50?img={{ employee?.id }}"
-            alt="User Avatar"
-            class="avatar"
-          />
-        </th>
-        <th>
-          <span>{{ employee?.firstName }}</span>
-          <span>{{ employee?.lastName }}</span>
-        </th>
-        <th>
-          <span *ngFor="let skill of employee.skillSet">{{
-              skill.skill
-            }}</span>
-        </th>
-        <th>
-          <span class="material-symbols-outlined" title="Weitere Infos">
-            expand_circle_down
-          </span>
-          <span class="material-symbols-outlined" title="Bearbeiten">
-            build_circle
-          </span>
-          <span
-            class="material-symbols-outlined"
-            id="delete-btn"
-            title="Löschen"
-          >
-            cancel
-          </span>
-        </th>
-      </tr>
-    }
+    <tr *ngFor="let employee of employeeList" class="list-row">
+      <th>
+        <img
+          src="https://i.pravatar.cc/50?img={{ employee?.id }}"
+          alt="User Avatar"
+          class="avatar"
+        />
+      </th>
+      <th>
+        <span>{{ employee?.firstName }}</span>
+        <span>{{ employee?.lastName }}</span>
+      </th>
+      <th>
+        <div class="skills" *ngFor="let skill of employee.skillSet">
+          {{ skill.skill }}
+        </div>
+        <div [hidden]="expandedEmployeeId !== employee.id">
+          <table class="skills-table">
+            <thead>
+              <tr>
+                <th>Street</th>
+                <th>City</th>
+                <th>Phone</th>
+              </tr>
+            </thead>
+            <tbody class="skills-address">
+              <tr>
+                <th>{{ employee?.street }}</th>
+                <th>{{ employee?.city }}</th>
+                <th>{{ employee?.phone }}</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </th>
+      <th>
+        <span
+          *ngIf="expandedEmployeeId !== employee.id"
+          class="material-symbols-outlined"
+          title="Weitere Infos"
+          (click)="toggleExpansion(employee.id)"
+        >
+          expand_circle_down
+        </span>
+        <span
+          *ngIf="expandedEmployeeId === employee.id"
+          class="material-symbols-outlined"
+          title="Weitere Infos"
+          (click)="toggleExpansion(employee.id)"
+        >
+          expand_circle_up
+        </span>
+        <span class="material-symbols-outlined" title="Bearbeiten">
+          build_circle
+        </span>
+        <span class="material-symbols-outlined" id="delete-btn" title="Löschen">
+          cancel
+        </span>
+      </th>
+    </tr>
   </tbody>
 </table>
-
+<div class="foundation"></div>

@@ -1,17 +1,17 @@
-table {
+.list {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
 }
-thead {
+.list thead {
   color: var(--color-lightblue);
 }
-tr {
+.list-row {
   border-bottom: 2px solid var(--color-lightgray);
   overflow-wrap: break-word;
   height: 10vh;
 }
-th {
+.list th {
   max-width: 30vw;
 }
 
@@ -21,6 +21,16 @@ img {
 }
 span {
   margin-left: 2vw;
+}
+.skills {
+  margin-left: 2vw;
+  border-bottom: #9ded36;
+}
+.skills-table {
+  margin-left: 2vw;
+}
+.skills-address th {
+  padding-right: 2vw;
 }
 .material-symbols-outlined {
   font-size: 6vh;
@@ -37,11 +47,13 @@ span {
   height: 4vh;
   border: 2px solid var(--color-lightblue);
   border-radius: 2vh;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   margin-left: 2vw;
 }
 input[type="text"]::placeholder {
   padding: 10px;
 }
-
-
+.foundation {
+  height: 20vh;
+  width: 100%;
+}

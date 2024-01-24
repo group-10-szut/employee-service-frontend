@@ -1,5 +1,3 @@
-import {SkillPost} from "./skill-post";
-
 export interface EmployeePost {
   lastName: string;
   firstName: string;
@@ -7,5 +5,5 @@ export interface EmployeePost {
   postcode: string;
   city: string;
   phone: string;
-  skillSet: SkillPost[];
+  skillSet: number[];  // NOTE: employees backend endpoint awaits a list of ids
 }
