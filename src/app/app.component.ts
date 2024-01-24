@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Event, Router, RouterOutlet, ActivatedRoute } from '@angular/router';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { MainComponent } from './components/main/main.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { AddEmployeeButtonComponent } from './components/buttons/add-employee-button/add-employee-button.component';
+import {
+  AddQualificationButtonComponent
+} from './components/buttons/add-qualification-button/add-qualification-button.component';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +15,23 @@ import { FooterComponent } from './components/footer/footer.component';
     CommonModule,
     RouterOutlet,
     NavBarComponent,
-    MainComponent,
     FooterComponent,
+    AddEmployeeButtonComponent,
+    AddQualificationButtonComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'angular-employee-testrange';
+  currentRoute: string;
+
+  constructor(private router: Router) {
+    this.currentRoute = "";
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.url;
+        console.info("Current route: ", this.currentRoute);
+      }
+    });
+  }
 }

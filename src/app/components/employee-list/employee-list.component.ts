@@ -2,11 +2,16 @@ import { Component } from '@angular/core';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { EmployeeGet } from '../../model/employee-get';
 import { EmployeeService } from '../../services/employee.service';
+import { AddEmployeeButtonComponent } from '../buttons/add-employee-button/add-employee-button.component';
+import {
+  AddQualificationButtonComponent
+} from '../buttons/add-qualification-button/add-qualification-button.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [NgOptimizedImage, NgForOf, NgIf],
+  imports: [NgOptimizedImage, NgForOf, NgIf, AddEmployeeButtonComponent, AddQualificationButtonComponent, FooterComponent],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css'
 })

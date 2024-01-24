@@ -12,8 +12,11 @@
   </header>
   <section>
     <app-nav-bar></app-nav-bar>
-    <app-main></app-main>
+    <router-outlet></router-outlet>
   </section>
-  <app-footer></app-footer>
+  <app-footer>
+      <app-add-employee-button *ngIf="currentRoute === '/employees'"></app-add-employee-button>
+      <app-add-qualification-button *ngIf="currentRoute === '/qualifications'"></app-add-qualification-button>
+  </app-footer>
 </div>
 
