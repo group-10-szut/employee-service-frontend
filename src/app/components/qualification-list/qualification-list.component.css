@@ -10,19 +10,25 @@ thead {
 tr {
   border-bottom: 2px solid var(--color-lightgray);
   overflow-wrap: break-word;
-  height: 10vh;
 }
 th {
   text-align: left;
+  padding: 1vw;
 }
 span {
   margin-left: 2vw;
 }
-.skill {
 
+.skilled-employee span {
+  margin: 1vw 4vh;
+  padding: 1vw;
+  background-color: var(--color-actiongreen);
+  color: white;
+  border-radius: 2vh;
+  display: inline-block;
 }
 .foundation {
-  height:20vh;
+  height: 20vh;
 }
 .material-symbols-outlined {
   font-size: 6vh;
@@ -39,11 +45,9 @@ span {
   height: 4vh;
   border: 2px solid var(--color-lightblue);
   border-radius: 2vh;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   margin-left: 2vw;
 }
 input[type="text"]::placeholder {
   padding: 10px;
 }
-
-

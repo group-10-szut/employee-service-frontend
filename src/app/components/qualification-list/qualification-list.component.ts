@@ -10,6 +10,15 @@ import { SkillGet } from '../../model/skill-get';
   styleUrl: './qualification-list.component.css',
 })
 export class QualificationListComponent {
+  expandedSkillID: number | null = null;
+
+  toggleExpansion(skillId: number): void {
+    if (this.expandedSkillID === skillId) {
+      this.expandedSkillID = null; // Collapse if already expanded
+    } else {
+      this.expandedSkillID = skillId; // Expand otherwise
+    }
+  }
   skillList: SkillGet[] = [
     {
       id: 1,

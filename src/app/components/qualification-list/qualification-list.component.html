@@ -18,10 +18,28 @@
         </th>
         <th>
           <span class="skill">{{ skill?.skill }}</span>
+          <div class="skilled" [hidden]="expandedSkillID !== skill.id">
+            <div class="skilled-employee">
+              <span>TODO Insert Persons here!</span>
+            </div>
+          </div>
         </th>
         <th>
-          <span class="material-symbols-outlined" title="Weitere Infos">
+          <span
+            *ngIf="expandedSkillID !== skill.id"
+            class="material-symbols-outlined"
+            title="Weitere Infos"
+            (click)="toggleExpansion(skill.id)"
+          >
             expand_circle_down
+          </span>
+          <span
+            *ngIf="expandedSkillID === skill.id"
+            class="material-symbols-outlined"
+            title="Weitere Infos"
+            (click)="toggleExpansion(skill.id)"
+          >
+            expand_circle_up
           </span>
           <span class="material-symbols-outlined" title="Bearbeiten">
             build_circle
@@ -37,6 +55,5 @@
       </tr>
     }
   </tbody>
-
 </table>
 <div class="foundation"></div>
