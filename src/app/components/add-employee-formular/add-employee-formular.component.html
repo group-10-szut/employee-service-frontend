@@ -4,92 +4,87 @@
   </div>
 
   <div class="card-body">
-    <form>
-      <div class="grid-container">
-        <div class="grid-item">
-          <div style="margin-bottom: 10px">
-            <label for="vorname">Vorname</label>
-          </div>
-          <div>
-            <input id="vorname" type="text" formControlName="vorname" placeholder="Vorname">
-          </div>
+    <div class="grid-container">
+      <div class="grid-item">
+        <div style="margin-bottom: 10px">
+          <label for="vorname">Vorname</label>
         </div>
-
-        <div class="grid-item">
-          <div style="margin-bottom: 10px">
-            <label>Stadt</label>
-          </div>
-          <div>
-            <input id="stadt" type="text" formControlName="stadt" placeholder="Stadt">
-          </div>
-        </div>
-
-        <div class="grid-item">
-          <div style="margin-bottom: 10px">
-            <label for="nachname">Nachname</label>
-          </div>
-          <div>
-            <input id="nachname" type="text" formControlName="nachname" placeholder="Nachname">
-          </div>
-        </div>
-
-        <div class="grid-item">
-          <div style="margin-bottom: 10px">
-            <label for="telefonnummer">Telefonnummer</label>
-          </div>
-          <div>
-            <input id="telefonnummer" type="text" formControlName="telefonnummer" placeholder="Telefonnummer">
-          </div>
-        </div>
-
-        <div class="grid-item" style="margin-bottom: 5px">
-          <div style="margin-bottom: 10px">
-            <label for="strasse">Straße und Hausnummer</label>
-          </div>
-          <div>
-            <input id="strasse" type="text" formControlName="strasse" placeholder="Straße und Hausnummer">
-          </div>
-        </div>
-
-        <div class="grid-item" style="margin-bottom: 5px">
-          <div style="margin-bottom: 10px">
-            <label for="postleitzahl">Postleitzahl</label>
-          </div>
-          <div>
-            <input id="postleitzahl" type="text" formControlName="postleitzahl" placeholder="Postleitzahl">
-          </div>
-        </div>
-
-        <div class="grid-item" style="margin-bottom: 5px">
-          <div>
-            <div style="margin-bottom: 10px">
-              <label>Qualifikationen</label>
-            </div>
-            <select name="Qualifikationen" multiple [(ngModel)]="selectedSkills">
-              <option *ngFor="let quali of skillsString" [value]="quali">
-                {{ quali }}
-              </option>
-            </select>
-          </div>
-        </div>
-
-
-
-        <div class="grid-item" style="margin-bottom: 5px">
-          <div>
-            <label></label>
-          </div>
-        </div>
-
-        <div class="grid-item">
-          <button type="submit" (click)="saveEmployee()">Speichern</button>
-        </div>
-        <div class="grid-item">
-          <button class="button-cancel" type="reset" (click)="closeForm()">Abbrechen</button>
+        <div>
+          <input id="vorname" type="text" placeholder="Vorname" [(ngModel)]="vorname">
         </div>
       </div>
-    </form>
+
+      <div class="grid-item">
+        <div style="margin-bottom: 10px">
+          <label>Stadt</label>
+        </div>
+        <div>
+          <input id="stadt" type="text" placeholder="Stadt" [(ngModel)]="stadt">
+        </div>
+      </div>
+
+      <div class="grid-item">
+        <div style="margin-bottom: 10px">
+          <label for="nachname">Nachname</label>
+        </div>
+        <div>
+          <input id="nachname" type="text" placeholder="Nachname" [(ngModel)]="nachname">
+        </div>
+      </div>
+
+      <div class="grid-item">
+        <div style="margin-bottom: 10px">
+          <label for="telefonnummer">Telefonnummer</label>
+        </div>
+        <div>
+          <input id="telefonnummer" type="text" placeholder="Telefonnummer" [(ngModel)]="telefonnummer">
+        </div>
+      </div>
+
+      <div class="grid-item" style="margin-bottom: 5px">
+        <div style="margin-bottom: 10px">
+          <label for="strasse">Straße und Hausnummer</label>
+        </div>
+        <div>
+          <input id="strasse" type="text" placeholder="Straße und Hausnummer" [(ngModel)]="strasse">
+        </div>
+      </div>
+
+      <div class="grid-item" style="margin-bottom: 5px">
+        <div style="margin-bottom: 10px">
+          <label for="postleitzahl">Postleitzahl</label>
+        </div>
+        <div>
+          <input id="postleitzahl" type="text" placeholder="Postleitzahl" [(ngModel)]="plz">
+        </div>
+      </div>
+
+      <div class="grid-item" style="margin-bottom: 5px">
+        <div>
+          <div style="margin-bottom: 10px">
+            <label>Qualifikationen</label>
+          </div>
+          <select name="Qualifikationen" multiple [(ngModel)]="selectedSkills">
+            <option *ngFor="let quali of skillsString" [value]="quali">
+              {{ quali }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="grid-item" style="margin-bottom: 5px">
+        <div>
+          <label></label>
+        </div>
+      </div>
+
+      <div class="grid-item">
+        <button type="submit" (click)="saveEmployee()">Speichern</button>
+      </div>
+      <div class="grid-item">
+        <button class="button-cancel" type="reset" (click)="closeForm()">Abbrechen</button>
+      </div>
+    </div>
   </div>
-
-
 </div>

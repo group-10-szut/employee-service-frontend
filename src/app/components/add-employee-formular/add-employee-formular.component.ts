@@ -14,40 +14,47 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
   styleUrl: './add-employee-formular.component.css'
 })
 export class AddEmployeeFormularComponent {
-  constructor(public formBuilder: FormBuilder, public qualificationService: QualificationService) {
-    this.skillsString.push("Java", "Angular", "Cobol");
+  constructor(public qualificationService: QualificationService) {
+    this.loadData();
+    this.getSkillsForDropDown();
   }
 
-  checkoutForm = this.formBuilder.group({
-    vorname: '',
-    nachname: '',
-    strasse: '',
-    plz: '',
-    stadt: '',
-    telefonnummer: '',
-    qualifikationen: ''
-  })
-
+  skills: SkillGet[] = [];
   skillsString: string[] = [];
+
+  vorname: string = '';
+  nachname: string = '';
+  stadt: string = '';
+  strasse: string = '';
+  telefonnummer: string = '';
+  plz: string = '';
   selectedSkills: string[] = [];
 
-  skills: SkillGet[] = [];
   skill: SkillGet | undefined;
-  skillFromApi: string | undefined;
 
   saveEmployee() {
     // Daten an employeeService übertragen
-
-    // leert das Formular
-    this.checkoutForm.reset();
 
     //Formular schließen
 
     // Aufruf InfoFenster, dass MA gespeichert wurde
   }
 
-  getSkillListForDropdown() {
-    console.log(this.qualificationService.getListOfAllQualifications());
+  loadData() {
+    this.qualificationService.getListOfAllQualifications().subscribe({
+      next: qualifications => {
+        this.skills = qualifications
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
+  }
+
+  getSkillsForDropDown() {
+    for (let skill of this.skills) {
+      this.skillsString.push(skill.skill);
+    }
   }
 
   closeForm() {
