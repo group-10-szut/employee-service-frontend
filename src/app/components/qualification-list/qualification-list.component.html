@@ -5,12 +5,12 @@
       <th><span>ID</span></th>
       <th><span>Qualifikation</span></th>
       <th>
-        <input type="text" placeholder="Suche" id="search" />
+        <input type="text" placeholder="Suche" id="search" [(ngModel)]="searchTerm" />
       </th>
     </tr>
   </thead>
   <tbody>
-    @for (skill of skillList; track skill) {
+    @for (skill of filteredQualifications(); track skill) {
       <tr>
         <th></th>
         <th>

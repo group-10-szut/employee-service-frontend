@@ -3,19 +3,18 @@ import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { EmployeeGet } from '../../model/employee-get';
 import { EmployeeService } from '../../services/employee.service';
 import { AddEmployeeButtonComponent } from '../buttons/add-employee-button/add-employee-button.component';
-import {
-  AddQualificationButtonComponent
-} from '../buttons/add-qualification-button/add-qualification-button.component';
 import { FooterComponent } from '../footer/footer.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [NgOptimizedImage, NgForOf, NgIf, AddEmployeeButtonComponent, AddQualificationButtonComponent, FooterComponent],
+  imports: [NgOptimizedImage, NgForOf, NgIf, AddEmployeeButtonComponent, FooterComponent, FormsModule],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css'
 })
 export class EmployeeListComponent {
+  searchTerm: string = '';
   expandedEmployeeId: number | null = null;
   employeeList: EmployeeGet[] = [];  // dummy data was moved into the `employee-dummy.service.ts`
 
@@ -40,6 +39,33 @@ export class EmployeeListComponent {
         console.log(err);
       }
     });
+  }
+
+  /**
+   * Filters the list of employees based on the search term.
+   * @returns {EmployeeGet[]} The filtered list of employees.
+   */
+  filteredEmployeeList(): EmployeeGet[] {
+    return this.employeeList.filter(employee =>
+      this.matchSearchTerm(employee)
+    );
+  }
+
+  /**
+   * Checks if an employee matches the search term.
+   * @param {EmployeeGet} employee - The employee object to check.
+   * @returns {boolean} True if the employee matches the search term, false otherwise.
+   */
+  matchSearchTerm(employee: EmployeeGet): boolean {
+    // Convert the search term to lowercase for case-insensitive comparison
+    const term = this.searchTerm.toLowerCase();
+
+    // Check if the employee's first name, last name, or any skill matches the search term
+    return (
+      employee.firstName.toLowerCase().includes(term) ||
+      employee.lastName.toLowerCase().includes(term) ||
+      employee.skillSet.some((skill: { skill: string; }) => skill.skill.toLowerCase().includes(term))
+    );
   }
 
   private exampleServiceUsage(): void {
