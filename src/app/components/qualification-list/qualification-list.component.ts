@@ -6,6 +6,8 @@ import {
 } from '../buttons/add-qualification-button/add-qualification-button.component';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import { QualificationService } from '../../services/qualification.service';
+import { SkillPost } from '../../model/skill-post';
 
 @Component({
   selector: 'app-qualification-list',
@@ -18,9 +20,29 @@ export class QualificationListComponent {
   searchTerm: string = '';
   expandedSkillID: number | null = null;
   editSkills: SkillGet | undefined;
+  skillList: SkillGet[] = [];
+
+  constructor(private service: QualificationService) {
+    this.loadSkills();
+  }
 
   edit(skill: SkillGet) {
     this.editSkills = skill;
+  }
+
+  save(skill: SkillGet) {
+    let skillPost: SkillPost = {skill: skill.skill}
+    this.service.updateQualificationById(skill.id, skillPost).subscribe({
+      next: skill => {
+        console.log("Successfully updated");
+        this.cancelEdit();
+        this.loadSkills();
+      },
+      error: err => {
+        console.log(err);
+        alert(err);  // TODO: remove in prod
+      }
+    })
   }
 
   cancelEdit() {
@@ -40,44 +62,6 @@ export class QualificationListComponent {
       this.expandedSkillID = skillId; // Expand otherwise
     }
   }
-  skillList: SkillGet[] = [
-    {
-      id: 1,
-      skill: 'Webentwicklung',
-    },
-    {
-      id: 2,
-      skill: 'Datenbankdesign',
-    },
-    {
-      id: 3,
-      skill: 'Projektmanagement',
-    },
-    {
-      id: 4,
-      skill: 'Qualitätssicherung',
-    },
-    {
-      id: 5,
-      skill: 'UI-Design',
-    },
-    {
-      id: 6,
-      skill: 'Backend-Entwicklung',
-    },
-    {
-      id: 7,
-      skill: 'Java',
-    },
-    {
-      id: 8,
-      skill: 'Python',
-    },
-    {
-      id: 9,
-      skill: 'C#',
-    },
-  ];
 
   /**
    * Filters the list of qualifications based on the search term.
@@ -100,5 +84,16 @@ export class QualificationListComponent {
 
     // Check if the qualification's name matches the search term
     return qualification.skill.toLowerCase().includes(term);
+  }
+
+  private loadSkills(): void {
+    this.service.getQualifications().subscribe({
+      next: skills => {
+        this.skillList = skills
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
   }
 }

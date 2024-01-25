@@ -64,12 +64,10 @@
             <span>{{ skill?.id }}</span>
           </td>
           <td>
-            <input class="edit" type="text" placeholder="{{ skill?.skill }}" />
+            <input class="edit" type="text" placeholder="{{ skill?.skill }}" [(ngModel)]="skill.skill"/>
           </td>
           <td>
-            <span class="material-symbols-outlined" title="Abspeichern"
-              >save</span
-            >
+            <span class="material-symbols-outlined" title="Abspeichern" (click)="save(skill)">save</span>
             <span
               class="material-symbols-outlined"
               title="Abbrechen"
