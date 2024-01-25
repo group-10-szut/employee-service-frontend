@@ -11,6 +11,21 @@ import { SkillGet } from '../../model/skill-get';
 })
 export class QualificationListComponent {
   expandedSkillID: number | null = null;
+  editSkills: SkillGet | undefined;
+
+  edit(skill: SkillGet) {
+    this.editSkills = skill;
+  }
+
+  cancelEdit() {
+    this.editSkills = undefined;
+  }
+
+  toEdit(skill: SkillGet): boolean {
+    if (!this.editSkills) {
+      return false;
+    } else return this.editSkills === skill;
+  }
 
   toggleExpansion(skillId: number): void {
     if (this.expandedSkillID === skillId) {

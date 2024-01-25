@@ -48,6 +48,10 @@ span {
   font-family: "Quicksand", sans-serif;
   margin-left: 2vw;
 }
+.edit {
+  margin-left: 2vw;
+}
 input[type="text"]::placeholder {
+  font-family: "Quicksand", sans-serif;
   padding: 10px;
 }

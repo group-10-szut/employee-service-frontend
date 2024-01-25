@@ -12,46 +12,72 @@
   <tbody>
     @for (skill of skillList; track skill) {
       <tr>
-        <th></th>
-        <th>
-          <span>{{ skill?.id }}</span>
-        </th>
-        <th>
-          <span class="skill">{{ skill?.skill }}</span>
-          <div class="skilled" [hidden]="expandedSkillID !== skill.id">
-            <div class="skilled-employee">
-              <span>TODO Insert Persons here!</span>
+        @if (!toEdit(skill)) {
+          <td></td>
+          <td>
+            <span>{{ skill?.id }}</span>
+          </td>
+          <td>
+            <span class="skill">{{ skill?.skill }}</span>
+            <div class="skilled" [hidden]="expandedSkillID !== skill.id">
+              <div class="skilled-employee">
+                <span>TODO Insert Persons here!</span>
+              </div>
             </div>
-          </div>
-        </th>
-        <th>
-          <span
-            *ngIf="expandedSkillID !== skill.id"
-            class="material-symbols-outlined"
-            title="Weitere Infos"
-            (click)="toggleExpansion(skill.id)"
-          >
-            expand_circle_down
-          </span>
-          <span
-            *ngIf="expandedSkillID === skill.id"
-            class="material-symbols-outlined"
-            title="Weitere Infos"
-            (click)="toggleExpansion(skill.id)"
-          >
-            expand_circle_up
-          </span>
-          <span class="material-symbols-outlined" title="Bearbeiten">
-            build_circle
-          </span>
-          <span
-            class="material-symbols-outlined"
-            id="delete-btn"
-            title="Löschen"
-          >
-            cancel
-          </span>
-        </th>
+          </td>
+          <td>
+            <span
+              *ngIf="expandedSkillID !== skill.id"
+              class="material-symbols-outlined"
+              title="Weitere Infos"
+              (click)="toggleExpansion(skill.id)"
+            >
+              expand_circle_down
+            </span>
+            <span
+              *ngIf="expandedSkillID === skill.id"
+              class="material-symbols-outlined"
+              title="Weitere Infos"
+              (click)="toggleExpansion(skill.id)"
+            >
+              expand_circle_up
+            </span>
+            <span
+              class="material-symbols-outlined"
+              title="Bearbeiten"
+              (click)="edit(skill)"
+            >
+              build_circle
+            </span>
+            <span
+              class="material-symbols-outlined"
+              id="delete-btn"
+              title="Löschen"
+            >
+              cancel
+            </span>
+          </td>
+        }
+        @if (toEdit(skill)) {
+          <td></td>
+          <td>
+            <span>{{ skill?.id }}</span>
+          </td>
+          <td>
+            <input class="edit" type="text" placeholder="{{ skill?.skill }}" />
+          </td>
+          <td>
+            <span class="material-symbols-outlined" title="Abspeichern"
+              >save</span
+            >
+            <span
+              class="material-symbols-outlined"
+              title="Abbrechen"
+              (click)="cancelEdit()"
+              >cancel</span
+            >
+          </td>
+        }
       </tr>
     }
   </tbody>
