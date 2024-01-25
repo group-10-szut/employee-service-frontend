@@ -1,0 +1,21 @@
+label {
+  color: #36C1ED;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 250px 250px;
+
+  padding: 10px;
+}
+
+.grid-item {
+  border: 1px;
+  padding: 20px;
+  font-size: 17px;
+  text-align: left;
+}
+
+.card-body{
+  text-align:center;
+}

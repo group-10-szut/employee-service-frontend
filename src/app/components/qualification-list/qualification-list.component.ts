@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SkillGet } from '../../model/skill-get';
+import {
+  AddQualificationButtonComponent
+} from '../buttons/add-qualification-button/add-qualification-button.component';
+import { FooterComponent } from '../footer/footer.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-qualification-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AddQualificationButtonComponent, FooterComponent, FormsModule],
   templateUrl: './qualification-list.component.html',
   styleUrl: './qualification-list.component.css',
 })
 export class QualificationListComponent {
+  searchTerm: string = '';
   expandedSkillID: number | null = null;
   editSkills: SkillGet | undefined;
 
@@ -72,4 +78,27 @@ export class QualificationListComponent {
       skill: 'C#',
     },
   ];
+
+  /**
+   * Filters the list of qualifications based on the search term.
+   * @returns {SkillGet[]} The filtered list of qualifications.
+   */
+  filteredQualifications(): SkillGet[] {
+    return this.skillList.filter(qualification =>
+      this.matchSearchTerm(qualification)
+    );
+  }
+
+  /**
+   * Checks if a qualification matches the search term.
+   * @param {SkillGet} qualification - The qualification object to check.
+   * @returns {boolean} True if the qualification matches the search term, false otherwise.
+   */
+  matchSearchTerm(qualification: SkillGet): boolean {
+    // Convert the search term to lowercase for case-insensitive comparison
+    const term = this.searchTerm.toLowerCase();
+
+    // Check if the qualification's name matches the search term
+    return qualification.skill.toLowerCase().includes(term);
+  }
 }

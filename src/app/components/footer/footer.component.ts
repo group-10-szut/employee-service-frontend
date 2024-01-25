@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {ShareService} from "../../services/share.service";
 
 @Component({
   selector: 'app-footer',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
+  constructor(public shareService: ShareService) {
+  }
 
+  openEmployeeForm() {
+    this.shareService.openEmployeeForm();
+  }
 }

@@ -14,6 +14,10 @@ export class QualificationService {
   constructor(private http: HttpClient) {
   }
 
+  getListOfAllQualifications(): Observable<SkillGet[]> {
+    return this.http.get<SkillGet[]>(this.baseUrl);
+  }
+
   /**
    * @param id - The ID of the qualification to update.
    * @param skillData - The data to update for the qualification.
@@ -34,12 +38,11 @@ export class QualificationService {
   }
 
   /**
-   * @param id - The ID of the qualification to retrieve.
-   * @returns Observable<SkillGet> - An observable containing the qualification data.
+   * @returns Observable<SkillGet[]> - An observable containing the qualification data.
    */
-  getQualificationById(id: number): Observable<SkillGet> {
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.get<SkillGet>(url);
+  getQualifications(): Observable<SkillGet[]> {
+    const url = `${this.baseUrl}`;
+    return this.http.get<SkillGet[]>(url);
   }
 
   /**

@@ -5,12 +5,12 @@
       <th><span>Name</span></th>
       <th><span>Qualifikation</span></th>
       <th>
-        <input type="text" placeholder="Suche" id="search" />
+        <input type="text" placeholder="Suche" id="search" [(ngModel)]="searchTerm" />
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let employee of employeeList" class="list-row">
+    <tr *ngFor="let employee of filteredEmployeeList()" class="list-row">
       <th>
         <img
           src="https://i.pravatar.cc/50?img={{ employee?.id }}"
@@ -73,3 +73,8 @@
   </tbody>
 </table>
 <div class="foundation"></div>
+
+<!-- Footer with buttons -->
+<app-footer>
+  <app-add-employee-button></app-add-employee-button>
+</app-footer>
