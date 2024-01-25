@@ -1,22 +1,23 @@
+<!-- Main content wrapper -->
 <div class="content">
+  <!-- Header section -->
   <header class="header">
+    <!-- Logo image -->
     <img
       class="logo"
       src="assets/images/HiTech-Logo-pos.png"
       alt="logo HiTech GmbH"
       aria-hidden="true"
     />
-    <span class="material-symbols-outlined" id="logout" title="Log out"
-    >exit_to_app</span
-    >
+    <!-- Logout button -->
+    <span class="material-symbols-outlined" id="logout" title="Log out" (click)="logout()">exit_to_app</span>
   </header>
+
+  <!-- Navigation bar section -->
   <section>
     <app-nav-bar></app-nav-bar>
-    <router-outlet></router-outlet>
   </section>
-  <app-footer>
-      <app-add-employee-button *ngIf="currentRoute === '/employees'"></app-add-employee-button>
-      <app-add-qualification-button *ngIf="currentRoute === '/qualifications'"></app-add-qualification-button>
-  </app-footer>
-</div>
 
+  <!-- Router outlet for dynamic content -->
+  <router-outlet></router-outlet>
+</div>

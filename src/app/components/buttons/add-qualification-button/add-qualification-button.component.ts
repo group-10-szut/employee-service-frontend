@@ -13,7 +13,7 @@ import { ButtonComponent } from '../button/button.component';
     ></app-button>
   `
 })
-export class AddQualificationButtonComponent extends ButtonComponent {
+export class AddQualificationButtonComponent {
   onAddQualificationClick() {
     // Specific logic for adding qualifications
     console.log('Add Qualification Logic');

@@ -13,7 +13,7 @@ import { ButtonComponent } from '../button/button.component';
     ></app-button>
   `
 })
-export class AddEmployeeButtonComponent extends ButtonComponent {
+export class AddEmployeeButtonComponent {
   onAddEmployeeClick() {
     // Specific logic for adding employees
     console.log('Add Employee Logic');
