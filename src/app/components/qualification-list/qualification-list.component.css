@@ -12,8 +12,7 @@ tr {
   overflow-wrap: break-word;
 }
 th {
-  text-align: left;
-  padding: 1vw;
+  padding: 1vw 0;
 }
 span {
   margin-left: 2vw;
@@ -38,8 +37,17 @@ span {
 .material-symbols-outlined:hover {
   color: var(--color-actiongreen);
 }
+.material-symbols-outlined #delete {
+  font-size: 2vh;
+}
 #delete-btn:hover {
   color: var(--color-dangerorange);
+}
+.circle {
+  height: 2vh;
+  width: 2vw;
+  border-radius: 50%;
+  border: 2px solid var(--color-lightblue);
 }
 #search {
   height: 4vh;
@@ -50,6 +58,7 @@ span {
 }
 .edit {
   margin-left: 2vw;
+  font-family: "Quicksand", sans-serif;
 }
 input[type="text"]::placeholder {
   font-family: "Quicksand", sans-serif;

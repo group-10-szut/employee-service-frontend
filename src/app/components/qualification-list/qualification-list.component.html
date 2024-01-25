@@ -5,7 +5,12 @@
       <th><span>ID</span></th>
       <th><span>Qualifikation</span></th>
       <th>
-        <input type="text" placeholder="Suche" id="search" [(ngModel)]="searchTerm" />
+        <input
+          type="text"
+          placeholder="Suche"
+          id="search"
+          [(ngModel)]="searchTerm"
+        />
       </th>
     </tr>
   </thead>
@@ -54,7 +59,7 @@
               id="delete-btn"
               title="Löschen"
             >
-              cancel
+              do_not_disturb_on
             </span>
           </td>
         }
@@ -64,10 +69,20 @@
             <span>{{ skill?.id }}</span>
           </td>
           <td>
-            <input class="edit" type="text" placeholder="{{ skill?.skill }}" [(ngModel)]="skill.skill"/>
+            <input
+              class="edit"
+              type="text"
+              placeholder="{{ skill?.skill }}"
+              [(ngModel)]="skill.skill"
+            />
           </td>
           <td>
-            <span class="material-symbols-outlined" title="Abspeichern" (click)="save(skill)">save</span>
+            <span
+              class="material-symbols-outlined"
+              title="Abspeichern"
+              (click)="save(skill)"
+              >save</span
+            >
             <span
               class="material-symbols-outlined"
               title="Abbrechen"
