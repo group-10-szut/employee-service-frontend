@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { SkillGet } from '../../model/skill-get';
 import { QualificationService } from '../../services/qualification.service';
 import { Subscription } from 'rxjs';
+import { EmployeePost } from '../../model/employee-post';
 
 @Component({
   selector: 'app-employee-list',
@@ -53,7 +54,21 @@ export class EmployeeListComponent {
   }
 
   save(employee: EmployeeGet) {
-    let employeePost: EmployeeGet;
+    let employeePost: EmployeePost = {
+      lastName: employee.lastName,
+      firstName: employee.firstName,
+      city: employee.city,
+      phone: employee.phone,
+      postcode: employee.postcode,
+      skillSet: employee.skillSet,
+      street: employee.street,
+    };
+    this.employeeService
+      .updateEmployeeById(employee.id, employeePost)
+      .subscribe();
+
+    this.cancelEdit();
+    this.loadEmployeeList();
   }
 
   toggleExpansion(employeeId: number): void {
