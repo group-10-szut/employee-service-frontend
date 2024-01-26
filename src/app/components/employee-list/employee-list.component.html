@@ -115,17 +115,20 @@
         <th class="skills">
           @for (skill of employee.skillSet; track skill) {
             <div class="edit-skill-container">
-              <input
-                class="edit-employee-skills"
-                type="text"
-                placeholder="{{ skill.skill }}"
-              />
-              <span
-                class="material-symbols-outlined"
-                title="Löschen"
-                id="delete-skill"
-                >do_not_disturb_on</span
-              >
+              <div class="delete-skill-container">
+                <span
+                  class="material-symbols-outlined"
+                  title="Löschen"
+                  id="delete-skill"
+                  >do_not_disturb_on</span
+                >
+                {{ skill.skill }}
+              </div>
+              <div class="add-skill.container">
+                <select>
+                  <option value="1">Hello</option>
+                </select>
+              </div>
             </div>
           }
 
@@ -195,10 +198,18 @@
           >
             expand_circle_up
           </span>
-          <span class="material-symbols-outlined" title="Bearbeiten">
-            build_circle
+          <span
+            class="material-symbols-outlined"
+            title="Speichern"
+            (click)="save(employee)"
+          >
+            save
           </span>
-          <span class="material-symbols-outlined" title="Löschen">
+          <span
+            class="material-symbols-outlined"
+            title="Abbrechen"
+            (click)="cancelEdit()"
+          >
             cancel
           </span>
         </th>

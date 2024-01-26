@@ -14,6 +14,7 @@
 }
 .list th {
   padding: 1vw;
+  margin-right: 1vw;
 }
 .avatar {
   max-width: 3vw;
@@ -24,14 +25,21 @@ img {
 .icons {
   text-align: center;
 }
+.skills {
+  display: flex;
+}
 #delete-skill {
-  margin-left: 0.5vw;
+  margin-right: 0.5vw;
   font-size: 4vh;
   color: var(--color-dangerorange);
 }
-.edit-skill-container {
+.delete-skill-container {
   display: flex;
   align-items: center;
+}
+.edit-skill-container {
+  display: flex;
+  flex-direction: column;
 }
 .edit {
   font-family: "Quicksand", sans-serif;
