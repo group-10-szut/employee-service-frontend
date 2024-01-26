@@ -17,7 +17,7 @@
   <tbody>
     <tr *ngFor="let employee of filteredEmployeeList()" class="list-row">
       @if (!toEdit(employee)) {
-        <th class="avatar">
+        <td class="avatar">
           <img
             src="https://i.pravatar.cc/50?img={{
               Math.floor(Math.random() * 71)
@@ -25,12 +25,12 @@
             alt="User Avatar"
             class="avatar"
           />
-        </th>
-        <th class="name">
+        </td>
+        <td class="name">
           <span>{{ employee?.firstName }}</span>
           <span>{{ employee?.lastName }}</span>
-        </th>
-        <th class="skills">
+        </td>
+        <td class="skills">
           @for (skill of employee.skillSet; track skill) {
             {{ skill.skill }}
           }
@@ -46,16 +46,16 @@
               </thead>
               <tbody class="skills-address">
                 <tr>
-                  <th>{{ employee?.street }}</th>
-                  <th>{{ employee?.city }}</th>
-                  <th>{{ employee?.postcode }}</th>
-                  <th>{{ employee?.phone }}</th>
+                  <td>{{ employee?.street }}</td>
+                  <td>{{ employee?.city }}</td>
+                  <td>{{ employee?.postcode }}</td>
+                  <td>{{ employee?.phone }}</td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </th>
-        <th class="icons">
+        </td>
+        <td class="icons">
           <span
             *ngIf="expandedEmployeeId !== employee.id"
             class="material-symbols-outlined"
@@ -86,10 +86,10 @@
           >
             do_not_disturb_on
           </span>
-        </th>
+        </td>
       }
       @if (toEdit(employee)) {
-        <th class="avatar">
+        <td class="avatar">
           <img
             src="https://i.pravatar.cc/50?img={{
               Math.floor(Math.random() * 71)
@@ -97,8 +97,8 @@
             alt="User Avatar"
             class="avatar"
           />
-        </th>
-        <th class="name">
+        </td>
+        <td class="name">
           <input
             class="edit"
             type="text"
@@ -111,10 +111,10 @@
             placeholder="{{ employee?.lastName }}"
             [(ngModel)]="employee.lastName"
           />
-        </th>
-        <th class="skills">
-          @for (skill of employee.skillSet; track skill) {
-            <div class="edit-skill-container">
+        </td>
+        <td class="skills">
+          <div class="edit-skill-container">
+            @for (skill of employee.skillSet; track skill) {
               <div class="delete-skill-container">
                 <span
                   class="material-symbols-outlined"
@@ -124,13 +124,15 @@
                 >
                 {{ skill.skill }}
               </div>
-              <div class="add-skill.container">
-                <select>
-                  <option value="1">Hello</option>
-                </select>
-              </div>
-            </div>
-          }
+            }
+          </div>
+          <div>
+            <select class="skill-select">
+              @for (skill of skillList; track skill) {
+                <option value="{{ skill.id }}">{{ skill.skill }}</option>
+              }
+            </select>
+          </div>
 
           <div [hidden]="expandedEmployeeId !== employee.id">
             <table class="skills-table">
@@ -144,44 +146,44 @@
               </thead>
               <tbody class="skills-address">
                 <tr>
-                  <th>
+                  <td>
                     <input
                       class="edit"
                       type="text"
                       placeholder="{{ employee?.street }}"
                       [(ngModel)]="employee.street"
                     />
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                     <input
                       class="edit"
                       type="text"
                       placeholder="{{ employee?.city }}"
                       [(ngModel)]="employee.city"
                     />
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                     <input
                       class="edit"
                       type="text"
                       placeholder="{{ employee?.postcode }}"
                       [(ngModel)]="employee.postcode"
                     />
-                  </th>
-                  <th>
+                  </td>
+                  <td>
                     <input
                       class="edit"
                       type="text"
                       placeholder="{{ employee?.phone }}"
                       [(ngModel)]="employee.phone"
                     />
-                  </th>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
-        </th>
-        <th class="icons">
+        </td>
+        <td class="icons">
           <span
             *ngIf="expandedEmployeeId !== employee.id"
             class="material-symbols-outlined"
@@ -212,7 +214,7 @@
           >
             cancel
           </span>
-        </th>
+        </td>
       }
     </tr>
   </tbody>

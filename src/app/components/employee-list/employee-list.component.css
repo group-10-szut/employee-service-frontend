@@ -22,27 +22,40 @@
 img {
   border-radius: 50%;
 }
+.name {
+  padding: 1vw;
+}
+.name span {
+  margin-right: 0.5vw;
+}
 .icons {
   text-align: center;
 }
-.skills {
-  display: flex;
+.skills-otto {
 }
 #delete-skill {
+  color: var(--color-dangerorange);
   margin-right: 0.5vw;
   font-size: 4vh;
-  color: var(--color-dangerorange);
 }
 .delete-skill-container {
   display: flex;
   align-items: center;
+  justify-items: flex-start;
 }
 .edit-skill-container {
-  display: flex;
+  float: left;
+
   flex-direction: column;
+}
+.add-skill-container {
+  display: flex;
 }
 .edit {
   font-family: "Quicksand", sans-serif;
+}
+.skill-select {
+  margin-left: 5vw;
 }
 
 .material-symbols-outlined {

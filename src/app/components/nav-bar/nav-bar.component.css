@@ -3,7 +3,8 @@
   display: flex;
 }
 h3 {
-  margin-left: 10vw ;
+  margin-left: 10vw;
+  cursor: pointer;
 }
 .active {
   color: var(--color-darkblue);

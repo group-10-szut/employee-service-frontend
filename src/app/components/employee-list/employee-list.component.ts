@@ -5,6 +5,9 @@ import { EmployeeService } from '../../services/employee.service';
 import { AddEmployeeButtonComponent } from '../buttons/add-employee-button/add-employee-button.component';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import { SkillGet } from '../../model/skill-get';
+import { QualificationService } from '../../services/qualification.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-employee-list',
@@ -23,11 +26,16 @@ import { FormsModule } from '@angular/forms';
 export class EmployeeListComponent {
   searchTerm: string = '';
   expandedEmployeeId: number | null = null;
-  employeeList: EmployeeGet[] = []; // dummy data was moved into the `employee-dummy.service.ts`
+  skillList: SkillGet[] = [];
+  employeeList: EmployeeGet[] = [];
   editEmployees: EmployeeGet | undefined;
 
-  constructor(private employeeService: EmployeeService) {
+  constructor(
+    private employeeService: EmployeeService,
+    private qualificationService: QualificationService,
+  ) {
     this.loadEmployeeList();
+    this.loadSkills();
   }
 
   edit(employee: EmployeeGet) {
@@ -94,6 +102,17 @@ export class EmployeeListComponent {
         skill.skill.toLowerCase().includes(term),
       )
     );
+  }
+
+  private loadSkills(): Subscription {
+    return this.qualificationService.getQualifications().subscribe({
+      next: (skills) => {
+        this.skillList = skills;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   private exampleServiceUsage(): void {
