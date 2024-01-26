@@ -1,74 +1,208 @@
 <table class="list">
   <thead>
     <tr class="list-row">
-      <th></th>
-      <th><span>Name</span></th>
-      <th><span>Qualifikation</span></th>
-      <th>
-        <input type="text" placeholder="Suche" id="search" [(ngModel)]="searchTerm" />
+      <th class="avatar"></th>
+      <th class="name">Name</th>
+      <th class="skills">Qualifikation</th>
+      <th class="icons">
+        <input
+          type="text"
+          placeholder="Suche"
+          id="search"
+          [(ngModel)]="searchTerm"
+        />
       </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let employee of filteredEmployeeList()" class="list-row">
-      <th>
-        <img
-          src="https://i.pravatar.cc/50?img={{ employee?.id }}"
-          alt="User Avatar"
-          class="avatar"
-        />
-      </th>
-      <th>
-        <span>{{ employee?.firstName }}</span>
-        <span>{{ employee?.lastName }}</span>
-      </th>
-      <th>
-        <div class="skills" *ngFor="let skill of employee.skillSet">
-          {{ skill.skill }}
-        </div>
-        <div [hidden]="expandedEmployeeId !== employee.id">
-          <table class="skills-table">
-            <thead>
-              <tr>
-                <th>Street</th>
-                <th>City</th>
-                <th>Phone</th>
-              </tr>
-            </thead>
-            <tbody class="skills-address">
-              <tr>
-                <th>{{ employee?.street }}</th>
-                <th>{{ employee?.city }}</th>
-                <th>{{ employee?.phone }}</th>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </th>
-      <th>
-        <span
-          *ngIf="expandedEmployeeId !== employee.id"
-          class="material-symbols-outlined"
-          title="Weitere Infos"
-          (click)="toggleExpansion(employee.id)"
-        >
-          expand_circle_down
-        </span>
-        <span
-          *ngIf="expandedEmployeeId === employee.id"
-          class="material-symbols-outlined"
-          title="Weitere Infos"
-          (click)="toggleExpansion(employee.id)"
-        >
-          expand_circle_up
-        </span>
-        <span class="material-symbols-outlined" title="Bearbeiten">
-          build_circle
-        </span>
-        <span class="material-symbols-outlined" id="delete-btn" title="Löschen">
-          cancel
-        </span>
-      </th>
+      @if (!toEdit(employee)) {
+        <th class="avatar">
+          <img
+            src="https://i.pravatar.cc/50?img={{
+              Math.floor(Math.random() * 71)
+            }}"
+            alt="User Avatar"
+            class="avatar"
+          />
+        </th>
+        <th class="name">
+          <span>{{ employee?.firstName }}</span>
+          <span>{{ employee?.lastName }}</span>
+        </th>
+        <th class="skills">
+          @for (skill of employee.skillSet; track skill) {
+            {{ skill.skill }}
+          }
+          <div [hidden]="expandedEmployeeId !== employee.id">
+            <table class="skills-table">
+              <thead>
+                <tr>
+                  <th>Street</th>
+                  <th>City</th>
+                  <th>Postcode</th>
+                  <th>Phone</th>
+                </tr>
+              </thead>
+              <tbody class="skills-address">
+                <tr>
+                  <th>{{ employee?.street }}</th>
+                  <th>{{ employee?.city }}</th>
+                  <th>{{ employee?.postcode }}</th>
+                  <th>{{ employee?.phone }}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </th>
+        <th class="icons">
+          <span
+            *ngIf="expandedEmployeeId !== employee.id"
+            class="material-symbols-outlined"
+            title="Weitere Infos"
+            (click)="toggleExpansion(employee.id)"
+          >
+            expand_circle_down
+          </span>
+          <span
+            *ngIf="expandedEmployeeId === employee.id"
+            class="material-symbols-outlined"
+            title="Weitere Infos"
+            (click)="toggleExpansion(employee.id)"
+          >
+            expand_circle_up
+          </span>
+          <span
+            class="material-symbols-outlined"
+            title="Bearbeiten"
+            (click)="edit(employee)"
+          >
+            build_circle
+          </span>
+          <span
+            class="material-symbols-outlined"
+            id="delete-btn"
+            title="Löschen"
+          >
+            do_not_disturb_on
+          </span>
+        </th>
+      }
+      @if (toEdit(employee)) {
+        <th class="avatar">
+          <img
+            src="https://i.pravatar.cc/50?img={{
+              Math.floor(Math.random() * 71)
+            }}"
+            alt="User Avatar"
+            class="avatar"
+          />
+        </th>
+        <th class="name">
+          <input
+            class="edit"
+            type="text"
+            placeholder="{{ employee?.firstName }}"
+            [(ngModel)]="employee.firstName"
+          />
+          <input
+            class="edit"
+            type="text"
+            placeholder="{{ employee?.lastName }}"
+            [(ngModel)]="employee.lastName"
+          />
+        </th>
+        <th class="skills">
+          @for (skill of employee.skillSet; track skill) {
+            <div class="edit-skill-container">
+              <input
+                class="edit-employee-skills"
+                type="text"
+                placeholder="{{ skill.skill }}"
+              />
+              <span
+                class="material-symbols-outlined"
+                title="Löschen"
+                id="delete-skill"
+                >do_not_disturb_on</span
+              >
+            </div>
+          }
+
+          <div [hidden]="expandedEmployeeId !== employee.id">
+            <table class="skills-table">
+              <thead>
+                <tr>
+                  <th>Street</th>
+                  <th>City</th>
+                  <th>Postcode</th>
+                  <th>Phone</th>
+                </tr>
+              </thead>
+              <tbody class="skills-address">
+                <tr>
+                  <th>
+                    <input
+                      class="edit"
+                      type="text"
+                      placeholder="{{ employee?.street }}"
+                      [(ngModel)]="employee.street"
+                    />
+                  </th>
+                  <th>
+                    <input
+                      class="edit"
+                      type="text"
+                      placeholder="{{ employee?.city }}"
+                      [(ngModel)]="employee.city"
+                    />
+                  </th>
+                  <th>
+                    <input
+                      class="edit"
+                      type="text"
+                      placeholder="{{ employee?.postcode }}"
+                      [(ngModel)]="employee.postcode"
+                    />
+                  </th>
+                  <th>
+                    <input
+                      class="edit"
+                      type="text"
+                      placeholder="{{ employee?.phone }}"
+                      [(ngModel)]="employee.phone"
+                    />
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </th>
+        <th class="icons">
+          <span
+            *ngIf="expandedEmployeeId !== employee.id"
+            class="material-symbols-outlined"
+            title="Weitere Infos"
+            (click)="toggleExpansion(employee.id)"
+          >
+            expand_circle_down
+          </span>
+          <span
+            *ngIf="expandedEmployeeId === employee.id"
+            class="material-symbols-outlined"
+            title="Weitere Infos"
+            (click)="toggleExpansion(employee.id)"
+          >
+            expand_circle_up
+          </span>
+          <span class="material-symbols-outlined" title="Bearbeiten">
+            build_circle
+          </span>
+          <span class="material-symbols-outlined" title="Löschen">
+            cancel
+          </span>
+        </th>
+      }
     </tr>
   </tbody>
 </table>

@@ -9,17 +9,43 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [NgOptimizedImage, NgForOf, NgIf, AddEmployeeButtonComponent, FooterComponent, FormsModule],
+  imports: [
+    NgOptimizedImage,
+    NgForOf,
+    NgIf,
+    AddEmployeeButtonComponent,
+    FooterComponent,
+    FormsModule,
+  ],
   templateUrl: './employee-list.component.html',
-  styleUrl: './employee-list.component.css'
+  styleUrl: './employee-list.component.css',
 })
 export class EmployeeListComponent {
   searchTerm: string = '';
   expandedEmployeeId: number | null = null;
-  employeeList: EmployeeGet[] = [];  // dummy data was moved into the `employee-dummy.service.ts`
+  employeeList: EmployeeGet[] = []; // dummy data was moved into the `employee-dummy.service.ts`
+  editEmployees: EmployeeGet | undefined;
 
   constructor(private employeeService: EmployeeService) {
     this.loadEmployeeList();
+  }
+
+  edit(employee: EmployeeGet) {
+    this.editEmployees = employee;
+  }
+
+  toEdit(employee: EmployeeGet): boolean {
+    if (!this.editEmployees) {
+      return false;
+    } else return this.editEmployees === employee;
+  }
+
+  cancelEdit() {
+    this.editEmployees = undefined;
+  }
+
+  save(employee: EmployeeGet) {
+    let employeePost: EmployeeGet;
   }
 
   toggleExpansion(employeeId: number): void {
@@ -32,12 +58,12 @@ export class EmployeeListComponent {
 
   private loadEmployeeList(): void {
     this.employeeService.getAllEmployees().subscribe({
-      next: employees => {
-        this.employeeList = employees
+      next: (employees) => {
+        this.employeeList = employees;
       },
-      error: err => {
+      error: (err) => {
         console.log(err);
-      }
+      },
     });
   }
 
@@ -46,8 +72,8 @@ export class EmployeeListComponent {
    * @returns {EmployeeGet[]} The filtered list of employees.
    */
   filteredEmployeeList(): EmployeeGet[] {
-    return this.employeeList.filter(employee =>
-      this.matchSearchTerm(employee)
+    return this.employeeList.filter((employee) =>
+      this.matchSearchTerm(employee),
     );
   }
 
@@ -64,13 +90,14 @@ export class EmployeeListComponent {
     return (
       employee.firstName.toLowerCase().includes(term) ||
       employee.lastName.toLowerCase().includes(term) ||
-      employee.skillSet.some((skill: { skill: string; }) => skill.skill.toLowerCase().includes(term))
+      employee.skillSet.some((skill: { skill: string }) =>
+        skill.skill.toLowerCase().includes(term),
+      )
     );
   }
 
   private exampleServiceUsage(): void {
     // let employee: EmployeeGet | null = null;
-
     // let employeePost: EmployeePost = {
     //   "lastName": "Doe",
     //   "firstName": "John",
@@ -80,7 +107,6 @@ export class EmployeeListComponent {
     //   "phone": "555-1234",
     //   "skillSet": [1]
     // };
-
     // Step 1 - Create Employee
     // this.employeeService.createEmployee(employeePost).subscribe({
     //   next: employee => {
@@ -91,7 +117,6 @@ export class EmployeeListComponent {
     //     console.log(err);
     //   }
     // });
-
     // Step 2 - Get Employee By ID
     // this.employeeService.getEmployeeById(employee.id).subscribe({
     //   next: employee => {
@@ -101,17 +126,13 @@ export class EmployeeListComponent {
     //     console.log(err);
     //   }
     // });
-
     // TODO
     // Step 3 - Change Employee
-
     // Step 4 - Get Employees Qualifications
-
     // Step 5 - Add Qualification To Employee
-
     // Step 6 - Delete Qualification Of Employee
-
     // Step 7 - Delete Employee
   }
-}
 
+  protected readonly Math = Math;
+}

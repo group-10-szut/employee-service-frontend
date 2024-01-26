@@ -1,7 +1,8 @@
 .list {
-  width: 100%;
+  width: 70%;
   border-collapse: collapse;
   text-align: left;
+  margin: auto;
 }
 .list thead {
   color: var(--color-lightblue);
@@ -12,26 +13,30 @@
   height: 10vh;
 }
 .list th {
-  max-width: 30vw;
+  padding: 1vw;
 }
-
+.avatar {
+  max-width: 3vw;
+}
 img {
   border-radius: 50%;
-  margin-left: 2vw;
 }
-span {
-  margin-left: 2vw;
+.icons {
+  text-align: center;
 }
-.skills {
-  margin-left: 2vw;
-  border-bottom: #9ded36;
+#delete-skill {
+  margin-left: 0.5vw;
+  font-size: 4vh;
+  color: var(--color-dangerorange);
 }
-.skills-table {
-  margin-left: 2vw;
+.edit-skill-container {
+  display: flex;
+  align-items: center;
 }
-.skills-address th {
-  padding-right: 2vw;
+.edit {
+  font-family: "Quicksand", sans-serif;
 }
+
 .material-symbols-outlined {
   font-size: 6vh;
   color: var(--color-lightblue);
@@ -48,7 +53,6 @@ span {
   border: 2px solid var(--color-lightblue);
   border-radius: 2vh;
   font-family: "Quicksand", sans-serif;
-  margin-left: 2vw;
 }
 input[type="text"]::placeholder {
   padding: 10px;
