@@ -9,10 +9,6 @@ import {ShareService} from "../../services/share.service";
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-  constructor(public shareService: ShareService) {
-  }
-
-  openEmployeeForm() {
-    this.shareService.openEmployeeForm();
+  constructor() {
   }
 }
