@@ -8,7 +8,7 @@ import { ButtonComponent } from '../button/button.component';
   imports: [CommonModule, ButtonComponent],
   template: `
     <app-button
-      [buttonText]="'Add Qualification'"
+      [buttonText]="'Qualifikation hinzufügen'"
       [onAddClick]="onAddQualificationClick"
     ></app-button>
   `
