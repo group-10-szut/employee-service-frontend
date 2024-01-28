@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SkillGet } from '../../model/skill-get';
-import { AddEmployeeButtonComponent } from '../buttons/add-employee-button/add-employee-button.component';
+import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {SkillGet} from '../../model/skill-get';
+import {AddEmployeeButtonComponent} from '../buttons/add-employee-button/add-employee-button.component';
 import {
   AddQualificationButtonComponent
 } from '../buttons/add-qualification-button/add-qualification-button.component';
-import { FooterComponent } from '../footer/footer.component';
+import {FooterComponent} from '../footer/footer.component';
+import {ShareService} from "../../services/share.service";
 
 @Component({
   selector: 'app-qualification-list',
@@ -15,6 +16,14 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrl: './qualification-list.component.css',
 })
 export class QualificationListComponent {
+
+  isFormularShowed: boolean = false;
+
+  constructor(public shareService: ShareService) {
+    this.shareService.isQualificationFormShowed.subscribe(
+      currentStatus => this.isFormularShowed = currentStatus);
+  }
+
   expandedSkillID: number | null = null;
 
   toggleExpansion(skillId: number): void {
@@ -24,6 +33,7 @@ export class QualificationListComponent {
       this.expandedSkillID = skillId; // Expand otherwise
     }
   }
+
   skillList: SkillGet[] = [
     {
       id: 1,
