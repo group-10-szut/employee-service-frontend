@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {ShareService} from "../../services/share.service";
 
 @Component({
   selector: 'app-footer',
