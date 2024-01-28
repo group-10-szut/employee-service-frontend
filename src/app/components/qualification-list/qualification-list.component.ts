@@ -7,11 +7,12 @@ import {
 } from '../buttons/add-qualification-button/add-qualification-button.component';
 import {FooterComponent} from '../footer/footer.component';
 import {ShareService} from "../../services/share.service";
+import {AddQualificationFormularComponent} from "../add-qualification-formular/add-qualification-formular.component";
 
 @Component({
   selector: 'app-qualification-list',
   standalone: true,
-  imports: [CommonModule, AddEmployeeButtonComponent, AddQualificationButtonComponent, FooterComponent],
+  imports: [CommonModule, AddEmployeeButtonComponent, AddQualificationButtonComponent, FooterComponent, AddQualificationFormularComponent],
   templateUrl: './qualification-list.component.html',
   styleUrl: './qualification-list.component.css',
 })

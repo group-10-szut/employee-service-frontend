@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ButtonComponent } from '../button/button.component';
+import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ButtonComponent} from '../button/button.component';
 import {ShareService} from "../../../services/share.service";
 
 @Component({
@@ -8,12 +8,10 @@ import {ShareService} from "../../../services/share.service";
   standalone: true,
   imports: [CommonModule, ButtonComponent],
   template: `
-    <app-button
-      [buttonText]="'Qualifikation hinzufügen'"
-      [onAddClick]="onAddQualificationClick"
-    ></app-button>
+    <button (click)="onAddQualificationClick()">Qualifikation hinzufügen</button>
   `
 })
+
 export class AddQualificationButtonComponent {
 
   isFormularShowed: boolean = false;
@@ -24,7 +22,6 @@ export class AddQualificationButtonComponent {
   }
 
   onAddQualificationClick() {
-    // Specific logic for adding qualifications
-    console.log('Add Qualification Logic');
+    this.shareService.changeShowQualificationForm(true);
   }
 }

@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import {QualificationService} from "../../services/qualification.service";
 import {SkillPost} from "../../model/skill-post";
+import {ShareService} from "../../services/share.service";
 
 @Component({
   selector: 'app-add-qualification-formular',
@@ -12,9 +13,12 @@ import {SkillPost} from "../../model/skill-post";
   styleUrl: './add-qualification-formular.component.css'
 })
 export class AddQualificationFormularComponent {
-  constructor(public qualificationService: QualificationService) {
+  constructor(public qualificationService: QualificationService, public shareService: ShareService) {
+    this.shareService.isQualificationFormShowed.subscribe(
+      currentStatus => this.isFormularShowed = currentStatus);
   }
 
+  isFormularShowed: boolean = true;
   skill: string = '';
 
   saveQualification() {
@@ -27,6 +31,6 @@ export class AddQualificationFormularComponent {
   }
 
   closeForm() {
-
+    this.shareService.changeShowQualificationForm(false);
   }
 }

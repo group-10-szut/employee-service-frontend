@@ -1,13 +1,15 @@
+<app-add-qualification-formular *ngIf="isFormularShowed"></app-add-qualification-formular>
+{{ isFormularShowed }}
 <table>
   <thead>
-    <tr>
-      <th></th>
-      <th><span>ID</span></th>
-      <th><span>Qualifikation</span></th>
-      <th>
-        <input type="text" placeholder="Suche" id="search" />
-      </th>
-    </tr>
+  <tr>
+    <th></th>
+    <th><span>ID</span></th>
+    <th><span>Qualifikation</span></th>
+    <th>
+      <input type="text" placeholder="Suche" id="search"/>
+    </th>
+  </tr>
   </thead>
   <tbody>
     @for (skill of skillList; track skill) {
