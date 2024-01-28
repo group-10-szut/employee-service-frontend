@@ -39,7 +39,7 @@ export class AddEmployeeFormularComponent {
   }
 
   loadData() {
-    this.qualificationService.getListOfAllQualifications().subscribe({
+    this.qualificationService.getQualifications().subscribe({
       next: qualifications => {
         this.skills = qualifications
       },
