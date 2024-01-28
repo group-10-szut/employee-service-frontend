@@ -1,0 +1,41 @@
+label {
+  color: #36C1ED;
+  font-size: 25px;
+}
+
+input{
+  font-size: 17px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 250px 250px;
+  padding: 10px;
+}
+
+.grid-item {
+  border: 1px;
+  padding: 20px;
+  font-size: 17px;
+  text-align: left;
+}
+
+.card-body{
+  text-align:center;
+}
+
+.qualification-modal {
+  font-size: 3vh;
+  color: var(--color-darkblue);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid var(--color-lightblue);
+  border-radius: 2vw;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  text-align: center;
+}
