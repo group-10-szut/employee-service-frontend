@@ -1,15 +1,13 @@
 import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatCard} from "@angular/material/card";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {QualificationService} from "../../services/qualification.service";
 import {SkillGet} from "../../model/skill-get";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-add-employee-formular',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatCard, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './add-employee-formular.component.html',
   styleUrl: './add-employee-formular.component.css'
 })
