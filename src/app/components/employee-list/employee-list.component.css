@@ -12,9 +12,8 @@
   overflow-wrap: break-word;
   height: 10vh;
 }
-.list th {
-  padding: 1vw;
-  margin-right: 1vw;
+.list td {
+  margin-right: 2vw;
 }
 .avatar {
   max-width: 3vw;
@@ -31,7 +30,15 @@ img {
 .icons {
   text-align: center;
 }
-.skills-otto {
+.skills-not-extended {
+  padding: 2vh 0;
+}
+.skills-table {
+  padding-bottom: 1vh;
+}
+.skills-table td,
+th {
+  padding-right: 20px;
 }
 #delete-skill {
   color: var(--color-dangerorange);
@@ -46,6 +53,9 @@ img {
 .edit-skill-container {
   float: left;
   flex-direction: column;
+}
+.edit-skill-container td {
+  background-color: #ff2e2e;
 }
 .edit {
   font-family: "Quicksand", sans-serif;

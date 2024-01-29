@@ -33,9 +33,11 @@
           <span>{{ employee?.lastName }}</span>
         </td>
         <td class="skills">
-          @for (skill of employee.skillSet; track skill) {
-            {{ skill.skill }}
-          }
+          <div class="skills-not-extended">
+            @for (skill of employee.skillSet; track skill) {
+              {{ skill.skill }}
+            }
+          </div>
           <div [hidden]="expandedEmployeeId !== employee.id">
             <table class="skills-table">
               <thead>
@@ -116,7 +118,7 @@
             [(ngModel)]="employee.lastName"
           />
         </td>
-        <td class="skills">
+        <td class="skills-extended">
           <div class="edit-skill-container">
             @for (skill of employee.skillSet; track skill) {
               <div class="delete-skill-container">
