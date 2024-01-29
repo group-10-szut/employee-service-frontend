@@ -45,17 +45,25 @@ img {
 }
 .edit-skill-container {
   float: left;
-
   flex-direction: column;
-}
-.add-skill-container {
-  display: flex;
 }
 .edit {
   font-family: "Quicksand", sans-serif;
 }
+.add-skill-container {
+  margin-top: 3vh;
+  display: flex;
+}
+#add-skill {
+  color: var(--color-actiongreen);
+  margin-left: 0.5vw;
+  font-size: 4vh;
+}
 .skill-select {
   margin-left: 5vw;
+  font-family: "Quicksand", sans-serif;
+  border: 2px solid var(--color-lightblue);
+  border-radius: 1vh;
 }
 
 .material-symbols-outlined {

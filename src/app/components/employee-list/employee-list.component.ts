@@ -7,7 +7,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { SkillGet } from '../../model/skill-get';
 import { QualificationService } from '../../services/qualification.service';
-import { Subscription } from 'rxjs';
+import { catchError, EMPTY, Subscription, tap } from 'rxjs';
 import { EmployeePost } from '../../model/employee-post';
 
 @Component({
@@ -65,11 +65,57 @@ export class EmployeeListComponent {
     };
     this.employeeService
       .updateEmployeeById(employee.id, employeePost)
-      .subscribe();
+      .subscribe({
+        next: (response) => {
+          //Erfolgreiche Verarbeitung der gespeicherten Daten
+          console.log('Daten erfolgreich gespeichert:', response);
+        },
+        error: (error) => {
+          //Fehlerbehandlung bei Speicherfehler
+          console.error('Fehler beim speichern der Daten', error);
+        },
+        complete: () => {
+          //Wenn Observable abgeschlossen ist
+          console.log('Speichern abgeschlossen');
+        },
+      });
 
     this.cancelEdit();
     this.loadEmployeeList();
   }
+
+  // save(employee: EmployeeGet): void {
+  //   let employeePost: EmployeePost = {
+  //     lastName: employee.lastName,
+  //     firstName: employee.firstName,
+  //     city: employee.city,
+  //     phone: employee.phone,
+  //     postcode: employee.postcode,
+  //     skillSet: employee.skillSet,
+  //     street: employee.street,
+  //   };
+  //
+  //   this.employeeService
+  //     .updateEmployeeById(employee.id, employeePost)
+  //     .pipe(
+  //       tap(() => {
+  //         // Success callback - you can handle success actions if needed
+  //         console.log('Employee updated successfully');
+  //       }),
+  //       catchError((error) => {
+  //         // Error callback - you can handle error actions if needed
+  //         console.error('Error updating employee', error);
+  //         return EMPTY; // or throw an error if you want to propagate it further
+  //       }),
+  //     )
+  //     .subscribe({
+  //       complete: () => {
+  //         // Finalize the update process (regardless of success or error)
+  //         this.cancelEdit();
+  //         this.loadEmployeeList();
+  //       },
+  //     });
+  //  }
 
   toggleExpansion(employeeId: number): void {
     if (this.expandedEmployeeId === employeeId) {

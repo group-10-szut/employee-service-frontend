@@ -20,7 +20,9 @@
         <td class="avatar">
           <img
             src="https://i.pravatar.cc/50?img={{
-              Math.floor(Math.random() * 71)
+              Math.floor(
+                Math.random() * 71
+              ) //Random Avatar (only 70 pictures available)
             }}"
             alt="User Avatar"
             class="avatar"
@@ -92,7 +94,9 @@
         <td class="avatar">
           <img
             src="https://i.pravatar.cc/50?img={{
-              Math.floor(Math.random() * 71)
+              Math.floor(
+                Math.random() * 71
+              ) //Random Avatar (only 70 pictures available)
             }}"
             alt="User Avatar"
             class="avatar"
@@ -126,12 +130,18 @@
               </div>
             }
           </div>
-          <div>
+          <div class="add-skill-container">
             <select class="skill-select">
               @for (skill of skillList; track skill) {
                 <option value="{{ skill.id }}">{{ skill.skill }}</option>
               }
             </select>
+            <span
+              id="add-skill"
+              class="material-symbols-outlined"
+              title="Qualifikation hinzufügen"
+              >add_circle</span
+            >
           </div>
 
           <div [hidden]="expandedEmployeeId !== employee.id">
