@@ -126,6 +126,7 @@
                   class="material-symbols-outlined"
                   title="Löschen"
                   id="delete-skill"
+                  (click)="deleteSelectedSkill(employee.id, skill.skill)"
                   >do_not_disturb_on</span
                 >
                 {{ skill.skill }}

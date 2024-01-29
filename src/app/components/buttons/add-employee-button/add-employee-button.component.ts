@@ -8,10 +8,10 @@ import { ButtonComponent } from '../button/button.component';
   imports: [CommonModule, ButtonComponent],
   template: `
     <app-button
-      [buttonText]="'Add Employee'"
+      [buttonText]="'Mitarbeiter hinzufügen'"
       [onAddClick]="onAddEmployeeClick"
     ></app-button>
-  `
+  `,
 })
 export class AddEmployeeButtonComponent {
   onAddEmployeeClick() {

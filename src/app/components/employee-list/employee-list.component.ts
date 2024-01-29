@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { EmployeeGet } from '../../model/employee-get';
 import { EmployeeService } from '../../services/employee.service';
@@ -7,7 +7,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { SkillGet } from '../../model/skill-get';
 import { QualificationService } from '../../services/qualification.service';
-import { catchError, EMPTY, Subscription, tap } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { EmployeePost } from '../../model/employee-post';
 import { SkillPost } from '../../model/skill-post';
 
@@ -102,38 +102,21 @@ export class EmployeeListComponent {
     this.loadEmployeeList();
   }
 
-  // save(employee: EmployeeGet): void {
-  //   let employeePost: EmployeePost = {
-  //     lastName: employee.lastName,
-  //     firstName: employee.firstName,
-  //     city: employee.city,
-  //     phone: employee.phone,
-  //     postcode: employee.postcode,
-  //     skillSet: employee.skillSet,
-  //     street: employee.street,
-  //   };
-  //
-  //   this.employeeService
-  //     .updateEmployeeById(employee.id, employeePost)
-  //     .pipe(
-  //       tap(() => {
-  //         // Success callback - you can handle success actions if needed
-  //         console.log('Employee updated successfully');
-  //       }),
-  //       catchError((error) => {
-  //         // Error callback - you can handle error actions if needed
-  //         console.error('Error updating employee', error);
-  //         return EMPTY; // or throw an error if you want to propagate it further
-  //       }),
-  //     )
-  //     .subscribe({
-  //       complete: () => {
-  //         // Finalize the update process (regardless of success or error)
-  //         this.cancelEdit();
-  //         this.loadEmployeeList();
-  //       },
-  //     });
-  //  }
+  deleteSelectedSkill(id: number, skill: string) {
+    let skillPost: SkillPost = { skill: skill };
+    this.employeeService.deleteQualificationById(id, skillPost).subscribe({
+      next: (response) => {
+        console.log('Qualifikation gelöscht', response);
+      },
+      error: (error) => {
+        console.log('Fehler beim Löschen der Qualifikation', error);
+      },
+      complete: () => {
+        console.log('Löschen der Qualifikation abgeschlossen');
+      },
+    });
+    this.loadEmployeeList();
+  }
 
   toggleExpansion(employeeId: number): void {
     if (this.expandedEmployeeId === employeeId) {
@@ -194,43 +177,44 @@ export class EmployeeListComponent {
     });
   }
 
-  private exampleServiceUsage(): void {
-    // let employee: EmployeeGet | null = null;
-    // let employeePost: EmployeePost = {
-    //   "lastName": "Doe",
-    //   "firstName": "John",
-    //   "street": "123 Main St",
-    //   "postcode": "12345",
-    //   "city": "Example City",
-    //   "phone": "555-1234",
-    //   "skillSet": [1]
-    // };
-    // Step 1 - Create Employee
-    // this.employeeService.createEmployee(employeePost).subscribe({
-    //   next: employee => {
-    //     employee = employee
-    //     console.log("Successfully created employee: ", employee);
-    //   },
-    //   error: err => {
-    //     console.log(err);
-    //   }
-    // });
-    // Step 2 - Get Employee By ID
-    // this.employeeService.getEmployeeById(employee.id).subscribe({
-    //   next: employee => {
-    //     console.log("Successfully fetched employee: ", employee);
-    //   },
-    //   error: err => {
-    //     console.log(err);
-    //   }
-    // });
-    // TODO
-    // Step 3 - Change Employee
-    // Step 4 - Get Employees Qualifications
-    // Step 5 - Add Qualification To Employee
-    // Step 6 - Delete Qualification Of Employee
-    // Step 7 - Delete Employee
-  }
+  //  private exampleServiceUsage(): void {
+  // let employee: EmployeeGet | null = null;
+  // let employeePost: EmployeePost = {
+  //   "lastName": "Doe",
+  //   "firstName": "John",
+  //   "street": "123 Main St",
+  //   "postcode": "12345",
+  //   "city": "Example City",
+  //   "phone": "555-1234",
+  //   "skillSet": [1]
+  // };
+  // Step 1 - Create Employee
+  // this.employeeService.createEmployee(employeePost).subscribe({
+  //   next: employee => {
+  //     employee = employee
+  //     console.log("Successfully created employee: ", employee);
+  //   },
+  //   error: err => {
+  //     console.log(err);
+  //   }
+  // });
+  // Step 2 - Get Employee By ID
+  // this.employeeService.getEmployeeById(employee.id).subscribe({
+  //   next: employee => {
+  //     console.log("Successfully fetched employee: ", employee);
+  //   },
+  //   error: err => {
+  //     console.log(err);
+  //   }
+  // });
+  // TODO
+  // Step 3 - Change Employee
+  // Step 4 - Get Employees Qualifications
+  // Step 5 - Add Qualification To Employee
+  // Step 6 - Delete Qualification Of Employee
+  // Step 7 - Delete Employee
+  // }
 
+  //protected readonly Math = Math;
   protected readonly Math = Math;
 }
