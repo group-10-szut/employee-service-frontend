@@ -132,19 +132,24 @@
               </div>
             }
           </div>
-          <div class="add-skill-container">
-            <select class="skill-select">
+          <form class="add-skill-container" method="post">
+            <select
+              class="skill-select"
+              name="skill"
+              [(ngModel)]="selectedSkill"
+            >
               @for (skill of skillList; track skill) {
-                <option value="{{ skill.id }}">{{ skill.skill }}</option>
+                <option [value]="skill.skill">{{ skill.skill }}</option>
               }
             </select>
             <span
               id="add-skill"
               class="material-symbols-outlined"
               title="Qualifikation hinzufügen"
+              (click)="addSelectedSkill(employee.id, selectedSkill)"
               >add_circle</span
             >
-          </div>
+          </form>
 
           <div [hidden]="expandedEmployeeId !== employee.id">
             <table class="skills-table">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { EmployeeGet } from '../../model/employee-get';
 import { EmployeeService } from '../../services/employee.service';
@@ -9,6 +9,7 @@ import { SkillGet } from '../../model/skill-get';
 import { QualificationService } from '../../services/qualification.service';
 import { catchError, EMPTY, Subscription, tap } from 'rxjs';
 import { EmployeePost } from '../../model/employee-post';
+import { SkillPost } from '../../model/skill-post';
 
 @Component({
   selector: 'app-employee-list',
@@ -30,6 +31,7 @@ export class EmployeeListComponent {
   skillList: SkillGet[] = [];
   employeeList: EmployeeGet[] = [];
   editEmployees: EmployeeGet | undefined;
+  selectedSkill: string = '';
 
   constructor(
     private employeeService: EmployeeService,
@@ -81,6 +83,22 @@ export class EmployeeListComponent {
       });
 
     this.cancelEdit();
+    this.loadEmployeeList();
+  }
+
+  addSelectedSkill(employeeId: number, addedSkill: string) {
+    let skillPost: SkillPost = { skill: addedSkill };
+    this.employeeService.addQualificationById(employeeId, skillPost).subscribe({
+      next: (response) => {
+        console.log('Skill hinzugefügt', response);
+      },
+      error: (error) => {
+        console.error('Fehler beim update', error);
+      },
+      complete: () => {
+        console.log('Update der Qualifikation abgeschlossen');
+      },
+    });
     this.loadEmployeeList();
   }
 
