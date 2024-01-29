@@ -56,21 +56,26 @@ export class EmployeeListComponent {
   }
 
   save(employee: EmployeeGet) {
+    let skillPostList: SkillPost[] = employee.skillSet.map(
+      (skillGet: { skill: any }) => {
+        return { skill: skillGet.skill };
+      },
+    );
     let employeePost: EmployeePost = {
       lastName: employee.lastName,
       firstName: employee.firstName,
+      street: employee.street,
+      postcode: employee.postcode,
       city: employee.city,
       phone: employee.phone,
-      postcode: employee.postcode,
-      skillSet: employee.skillSet,
-      street: employee.street,
+      skillSet: skillPostList,
     };
     this.employeeService
       .updateEmployeeById(employee.id, employeePost)
       .subscribe({
-        next: (response) => {
+        next: (employee) => {
           //Erfolgreiche Verarbeitung der gespeicherten Daten
-          console.log('Daten erfolgreich gespeichert:', response);
+          console.log('Daten erfolgreich gespeichert:');
         },
         error: (error) => {
           //Fehlerbehandlung bei Speicherfehler
@@ -82,7 +87,6 @@ export class EmployeeListComponent {
         },
       });
 
-    this.cancelEdit();
     this.loadEmployeeList();
   }
 
