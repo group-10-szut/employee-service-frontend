@@ -25,9 +25,19 @@
           <td>
             <span class="skill">{{ skill?.skill }}</span>
             <div class="skilled" [hidden]="expandedSkillID !== skill.id">
-              <div class="skilled-employee">
-                <span>TODO Insert Persons here!</span>
-              </div>
+              @if (skilledEmployeeList) {
+                @for (
+                  skilledEmployee of skilledEmployeeList.employees;
+                  track skilledEmployee
+                ) {
+                  <div class="skilled-employee">
+                    <span
+                      >{{ skilledEmployee.firstName }}
+                      {{ skilledEmployee.lastName }}</span
+                    >
+                  </div>
+                }
+              }
             </div>
           </td>
           <td>
@@ -42,7 +52,7 @@
             <span
               *ngIf="expandedSkillID === skill.id"
               class="material-symbols-outlined"
-              title="Weitere Infos"
+              title="Weniger Infos"
               (click)="toggleExpansion(skill.id)"
             >
               expand_circle_up

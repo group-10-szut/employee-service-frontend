@@ -5,7 +5,12 @@
       <th><span>Name</span></th>
       <th><span>Qualifikation</span></th>
       <th>
-        <input type="text" placeholder="Suche" id="search" [(ngModel)]="searchTerm" />
+        <input
+          type="text"
+          placeholder="Suche"
+          id="search"
+          [(ngModel)]="searchTerm"
+        />
       </th>
     </tr>
   </thead>
@@ -57,7 +62,7 @@
         <span
           *ngIf="expandedEmployeeId === employee.id"
           class="material-symbols-outlined"
-          title="Weitere Infos"
+          title="Weniger Infos"
           (click)="toggleExpansion(employee.id)"
         >
           expand_circle_up
