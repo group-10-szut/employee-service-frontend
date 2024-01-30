@@ -99,10 +99,9 @@ th {
   border: 2px solid var(--color-lightblue);
   border-radius: 2vh;
   font-family: "Quicksand", sans-serif;
+  text-indent: 1vw;
 }
-input[type="text"]::placeholder {
-  padding: 10px;
-}
+
 .foundation {
   height: 20vh;
   width: 100%;
