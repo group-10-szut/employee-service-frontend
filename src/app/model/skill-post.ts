@@ -1,3 +1,4 @@
-export interface SkillPost {
-  skill: string
+export class SkillPost {
+  constructor(public skill: string) {
+  }
 }
