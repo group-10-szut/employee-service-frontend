@@ -7,24 +7,37 @@ table {
 thead {
   color: var(--color-lightblue);
 }
+p {
+  margin-left: 2vw;
+}
 tr {
   border-bottom: 2px solid var(--color-lightgray);
   overflow-wrap: break-word;
 }
-th {
-  padding: 1vw 0;
-}
-span {
-  margin-left: 2vw;
+.right-column {
+  text-align: right;
 }
 
-.skilled-employee span {
-  margin: 1vw 4vh;
+.skill {
+  padding: 3vh 0;
+  margin-left: 2vw;
+}
+.skilled-employee {
+  margin: 1vw 2vh;
   padding: 1vw;
   background-color: var(--color-actiongreen);
   color: white;
   border-radius: 2vh;
-  display: inline-block;
+}
+.no-skilled-employee {
+  margin: 1vw 4vh;
+  padding: 1vw;
+  background-color: var(--color-dangerorange);
+  color: white;
+  border-radius: 2vh;
+}
+.icons-container {
+  margin-right: 2vw;
 }
 .foundation {
   height: 20vh;
@@ -43,18 +56,13 @@ span {
 #delete-btn:hover {
   color: var(--color-dangerorange);
 }
-.circle {
-  height: 2vh;
-  width: 2vw;
-  border-radius: 50%;
-  border: 2px solid var(--color-lightblue);
-}
 #search {
   height: 4vh;
   border: 2px solid var(--color-lightblue);
   border-radius: 2vh;
   font-family: "Quicksand", sans-serif;
-  margin-left: 2vw;
+  margin-right: 2vw;
+  padding-left: 1vw;
 }
 .edit {
   margin-left: 2vw;
@@ -62,5 +70,4 @@ span {
 }
 input[type="text"]::placeholder {
   font-family: "Quicksand", sans-serif;
-  padding: 10px;
 }
