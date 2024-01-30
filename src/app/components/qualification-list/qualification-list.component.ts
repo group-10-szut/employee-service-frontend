@@ -31,6 +31,11 @@ export class QualificationListComponent {
     this.loadSkills();
   }
 
+  /**
+   * saves the edited skill, reloads the table
+   * and closes the expanded field
+   * @param skill
+   */
   save(skill: SkillGet) {
     let skillPost: SkillPost = { skill: skill.skill };
     this.service.updateQualificationById(skill.id, skillPost).subscribe({
@@ -39,12 +44,16 @@ export class QualificationListComponent {
         this.cancelEdit();
         this.loadSkills();
       },
-      error: (err) => {
-        console.log(err);
+      error: (error) => {
+        console.log(error);
       },
     });
   }
 
+  /**
+   * get all Employees which have the respective skill
+   * @param id
+   */
   getEmployeesBySkill(id: number) {
     this.service.getQualificationEmployees(id).subscribe({
       next: (employee) => {
@@ -61,19 +70,40 @@ export class QualificationListComponent {
     });
   }
 
+  /**
+   * Takes the skill and hands it down to the toEdit-function
+   * and therefor makes it editable
+   * @param skill
+   */
   edit(skill: SkillGet) {
     this.editSkills = skill;
   }
+
+  /**
+   * makes the editSkills Variable undefined again and
+   * therefore puts the table-row in default condition
+   * and closes the expansion field
+   */
   cancelEdit() {
     this.editSkills = undefined;
   }
 
+  /**
+   * Handles together with edit-function above
+   * whether the state of the table-row is in edit-mode or not
+   * @param skill
+   */
   toEdit(skill: SkillGet): boolean {
     if (!this.editSkills) {
       return false;
     } else return this.editSkills === skill;
   }
 
+  /**
+   * Toggles the Expansion field by clicking the up- or down icon
+   * based on the id of the respective skill
+   * @param skillId
+   */
   toggleExpansion(skillId: number): void {
     if (this.expandedSkillID === skillId) {
       this.expandedSkillID = null; // Collapse if already expanded
@@ -106,6 +136,10 @@ export class QualificationListComponent {
     return qualification.skill.toLowerCase().includes(term);
   }
 
+  /**
+   * loads all available skills which are distributed in the table
+   * @private
+   */
   private loadSkills(): void {
     this.service.getQualifications().subscribe({
       next: (skills) => {
