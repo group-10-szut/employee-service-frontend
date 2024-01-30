@@ -65,9 +65,11 @@
         <span class="material-symbols-outlined" title="Bearbeiten">
           build_circle
         </span>
-        <span class="material-symbols-outlined" id="delete-btn" title="Löschen">
+        <span class="material-symbols-outlined" id="delete-btn" title="Löschen" (click)="deleteEmployee(employee)">
           cancel
         </span>
+        <app-confirmation-fenster *ngIf="showConfirmation && employee.id === employeeToDeleteId" (confirmed)="onConfirmationResult($event)"></app-confirmation-fenster>
+        <app-info-fenster *ngIf="showInfo" (closed)="onInfoClosed()"></app-info-fenster>
       </th>
     </tr>
   </tbody>

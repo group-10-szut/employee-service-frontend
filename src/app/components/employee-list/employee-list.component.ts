@@ -5,11 +5,13 @@ import { EmployeeService } from '../../services/employee.service';
 import { AddEmployeeButtonComponent } from '../buttons/add-employee-button/add-employee-button.component';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import {InfoFensterComponent} from "../info-fenster/info-fenster.component";
+import {ConfirmationComponent} from "../confirmation-fenster/confirmation-fenster.component";
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [NgOptimizedImage, NgForOf, NgIf, AddEmployeeButtonComponent, FooterComponent, FormsModule],
+    imports: [NgOptimizedImage, NgForOf, NgIf, AddEmployeeButtonComponent, FooterComponent, FormsModule, ConfirmationComponent, InfoFensterComponent],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css'
 })
@@ -17,9 +19,42 @@ export class EmployeeListComponent {
   searchTerm: string = '';
   expandedEmployeeId: number | null = null;
   employeeList: EmployeeGet[] = [];  // dummy data was moved into the `employee-dummy.service.ts`
+  showConfirmation: boolean = false;
+  employeeToDeleteId: number | null = null;
+  showInfo: boolean = false;
 
-  constructor(private employeeService: EmployeeService) {
+    constructor(private employeeService: EmployeeService) {
     this.loadEmployeeList();
+  }
+
+  deleteEmployee(employee: EmployeeGet): void {
+    // Show the confirmation window
+    this.showConfirmation = true;
+    this.employeeToDeleteId = employee.id;
+  }
+
+  onConfirmationResult(confirmed: boolean): void {
+      if (confirmed) {
+          // User confirmed deletion, call the service method
+          this.employeeService.deleteEmployeeById(this.employeeToDeleteId!)
+              .subscribe(() => {
+                  this.showInfo = true;
+                  // Refresh employee list
+                  this.loadEmployeeList();
+              },
+                  error => {
+                      console.error('Error deleting the Employee:', error);
+                  });
+      }
+
+      // Reset variables
+      this.showConfirmation = false;
+      this.employeeToDeleteId = null;
+  }
+
+  onInfoClosed(): void {
+      // Hide info window
+      this.showInfo = false;
   }
 
   toggleExpansion(employeeId: number): void {
