@@ -41,20 +41,40 @@ export class EmployeeListComponent {
     this.loadSkills();
   }
 
+  /**
+   * Takes the employee and hands it down to toEdit-function
+   * to make the employee editable
+   * @param employee
+   */
   edit(employee: EmployeeGet) {
     this.editEmployees = employee;
   }
 
+  /**
+   * Handles with edit-function the change
+   * from Data display to input-fields
+   * to make the employee editable
+   * @param employee
+   */
   toEdit(employee: EmployeeGet): boolean {
     if (!this.editEmployees) {
       return false;
     } else return this.editEmployees === employee;
   }
 
+  /**
+   * declares the editEmployees variable undefined again
+   * and therefore sets the table-row in default condition
+   * and closes the expanded field
+   */
   cancelEdit() {
     this.editEmployees = undefined;
   }
 
+  /**
+   * updates the edited Employee and reloads the table
+   * @param employee
+   */
   save(employee: EmployeeGet) {
     let skillPostList: SkillPost[] = employee.skillSet.map(
       (skillGet: { skill: any }) => {
@@ -73,7 +93,7 @@ export class EmployeeListComponent {
     this.employeeService
       .updateEmployeeById(employee.id, employeePost)
       .subscribe({
-        next: (employee) => {
+        next: () => {
           //Erfolgreiche Verarbeitung der gespeicherten Daten
           console.log('Daten erfolgreich gespeichert:');
         },
@@ -90,6 +110,12 @@ export class EmployeeListComponent {
     this.loadEmployeeList();
   }
 
+  /**
+   * updates the selected employee with a new skill from the dropdown-menu
+   * reloads the employees and therefore closes the expansion
+   * @param employeeId
+   * @param addedSkill
+   */
   addSelectedSkill(employeeId: number, addedSkill: string) {
     let skillPost: SkillPost = { skill: addedSkill };
     this.employeeService.addQualificationById(employeeId, skillPost).subscribe({
@@ -106,6 +132,12 @@ export class EmployeeListComponent {
     this.loadEmployeeList();
   }
 
+  /**
+   * Updates the employee by deleting the selected skill from the list
+   * reloads the employees and therefore closes the expansion
+   * @param id
+   * @param skill
+   */
   deleteSelectedSkill(id: number, skill: string) {
     let skillPost: SkillPost = { skill: skill };
     this.employeeService.deleteQualificationById(id, skillPost).subscribe({
@@ -122,6 +154,11 @@ export class EmployeeListComponent {
     this.loadEmployeeList();
   }
 
+  /**
+   * Toggles the expansion field by clicking the up- or down icon
+   * based on the id of the respective employee
+   * @param employeeId
+   */
   toggleExpansion(employeeId: number): void {
     if (this.expandedEmployeeId === employeeId) {
       this.expandedEmployeeId = null; // Collapse if already expanded
@@ -130,6 +167,10 @@ export class EmployeeListComponent {
     }
   }
 
+  /**
+   * loads all available employees
+   * @private
+   */
   private loadEmployeeList(): void {
     this.employeeService.getAllEmployees().subscribe({
       next: (employees) => {
@@ -181,44 +222,5 @@ export class EmployeeListComponent {
     });
   }
 
-  //  private exampleServiceUsage(): void {
-  // let employee: EmployeeGet | null = null;
-  // let employeePost: EmployeePost = {
-  //   "lastName": "Doe",
-  //   "firstName": "John",
-  //   "street": "123 Main St",
-  //   "postcode": "12345",
-  //   "city": "Example City",
-  //   "phone": "555-1234",
-  //   "skillSet": [1]
-  // };
-  // Step 1 - Create Employee
-  // this.employeeService.createEmployee(employeePost).subscribe({
-  //   next: employee => {
-  //     employee = employee
-  //     console.log("Successfully created employee: ", employee);
-  //   },
-  //   error: err => {
-  //     console.log(err);
-  //   }
-  // });
-  // Step 2 - Get Employee By ID
-  // this.employeeService.getEmployeeById(employee.id).subscribe({
-  //   next: employee => {
-  //     console.log("Successfully fetched employee: ", employee);
-  //   },
-  //   error: err => {
-  //     console.log(err);
-  //   }
-  // });
-  // TODO
-  // Step 3 - Change Employee
-  // Step 4 - Get Employees Qualifications
-  // Step 5 - Add Qualification To Employee
-  // Step 6 - Delete Qualification Of Employee
-  // Step 7 - Delete Employee
-  // }
-
-  //protected readonly Math = Math;
   protected readonly Math = Math;
 }
