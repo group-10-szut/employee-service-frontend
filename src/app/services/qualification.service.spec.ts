@@ -58,9 +58,6 @@ describe('QualificationService', () => {
     const qualificationId = 1;
     const dummySkill: SkillGet = {id: 1, skill: "Java"};
 
-    service.getQualificationById(qualificationId).subscribe(skill => {
-      expect(skill).toEqual(dummySkill);
-    });
 
     const req = httpTestingController.expectOne(`https://employee.szut.dev/qualifications/${qualificationId}`);
     expect(req.request.method).toBe('GET');

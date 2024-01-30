@@ -1,11 +1,9 @@
 import {SkillPost} from "./skill-post";
 
-export interface EmployeePost {
-  lastName: string;
-  firstName: string;
-  street: string;
-  postcode: string;
-  city: string;
-  phone: string;
-  skillSet: SkillPost[];
+export class EmployeePost {
+  constructor(public lastName: string, public firstName: string,
+              public street: string, public postcode: string,
+              public city: string, public phone: string,
+              public skillSet: SkillPost[]) {
+  }
 }

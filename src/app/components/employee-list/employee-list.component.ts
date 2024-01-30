@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
-import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
-import { EmployeeGet } from '../../model/employee-get';
-import { EmployeeService } from '../../services/employee.service';
-import { AddEmployeeButtonComponent } from '../buttons/add-employee-button/add-employee-button.component';
-import { FooterComponent } from '../footer/footer.component';
-import { FormsModule } from '@angular/forms';
+import {Component} from '@angular/core';
+import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {EmployeeGet} from '../../model/employee-get';
+import {EmployeeService} from '../../services/employee.service';
+import {AddEmployeeButtonComponent} from '../buttons/add-employee-button/add-employee-button.component';
+import {FooterComponent} from '../footer/footer.component';
+import {FormsModule} from '@angular/forms';
+import {AddEmployeeFormularComponent} from "../add-employee-formular/add-employee-formular.component";
+import {ShareService} from "../../services/share.service";
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [NgOptimizedImage, NgForOf, NgIf, AddEmployeeButtonComponent, FooterComponent, FormsModule],
+  imports: [NgOptimizedImage, NgForOf, NgIf, AddEmployeeButtonComponent, FooterComponent, FormsModule, AddEmployeeFormularComponent],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css'
 })
@@ -17,8 +19,12 @@ export class EmployeeListComponent {
   searchTerm: string = '';
   expandedEmployeeId: number | null = null;
   employeeList: EmployeeGet[] = [];  // dummy data was moved into the `employee-dummy.service.ts`
+  isFormularShowed: boolean = false;
 
-  constructor(private employeeService: EmployeeService) {
+  constructor(private employeeService: EmployeeService,
+              public shareService: ShareService) {
+    this.shareService.isEmployeeFormShowed.subscribe(
+      currentStatus => this.isFormularShowed = currentStatus);
     this.loadEmployeeList();
   }
 
