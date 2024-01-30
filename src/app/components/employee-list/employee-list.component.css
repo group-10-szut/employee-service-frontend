@@ -45,6 +45,11 @@ th {
   margin-right: 0.5vw;
   font-size: 4vh;
 }
+#delete-skill:hover {
+  background-color: var(--color-dangerorange);
+  color: white;
+  border-radius: 50%;
+}
 .delete-skill-container {
   display: flex;
   align-items: center;
@@ -52,22 +57,24 @@ th {
 }
 .edit-skill-container {
   float: left;
-  flex-direction: column;
-}
-.edit-skill-container td {
-  background-color: #ff2e2e;
+  padding: 10px 0;
 }
 .edit {
   font-family: "Quicksand", sans-serif;
 }
 .add-skill-container {
-  margin-top: 3vh;
+  padding: 2vh;
   display: flex;
 }
 #add-skill {
   color: var(--color-actiongreen);
   margin-left: 0.5vw;
   font-size: 4vh;
+}
+#add-skill:hover {
+  background-color: var(--color-actiongreen);
+  color: white;
+  border-radius: 50%;
 }
 .skill-select {
   margin-left: 5vw;

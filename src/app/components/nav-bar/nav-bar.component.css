@@ -3,21 +3,17 @@
   display: flex;
   text-align: left;
   margin: auto;
+  color: var(--color-lightgray);
 }
 .navbar h3 {
   display: flex;
   margin-right: 10vw;
   align-items: flex-end;
+  cursor: pointer;
 }
 .active {
   color: var(--color-darkblue);
-  /*text-decoration: underline;*/
-  /*text-decoration-thickness: 2px;*/
 }
-.inactive {
-  color: var(--color-lightgray);
-  cursor: pointer;
-}
-.inactive:hover {
+.navbar h3:hover {
   color: var(--color-darkblue);
 }
