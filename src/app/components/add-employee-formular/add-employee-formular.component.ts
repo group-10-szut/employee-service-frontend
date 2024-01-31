@@ -6,7 +6,6 @@ import {SkillGet} from "../../model/skill-get";
 import {ShareService} from "../../services/share.service";
 import {EmployeeService} from "../../services/employee.service";
 import {EmployeePost} from "../../model/employee-post";
-import { SkillPost } from '../../model/skill-post';
 
 @Component({
   selector: 'app-add-employee-formular',
@@ -39,7 +38,7 @@ export class AddEmployeeFormularComponent {
   postSkills: SkillGet[] = [];
 
   loadData() {
-    this.qualificationService.getListOfAllQualifications().subscribe({
+    this.qualificationService.getQualifications().subscribe({
       next: qualifications => {
         this.getSkills = qualifications
       },

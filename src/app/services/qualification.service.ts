@@ -14,10 +14,6 @@ export class QualificationService {
   constructor(private http: HttpClient) {
   }
 
-  getListOfAllQualifications(): Observable<SkillGet[]> {
-    return this.http.get<SkillGet[]>(this.baseUrl);
-  }
-
   /**
    * @param id - The ID of the qualification to update.
    * @param skillData - The data to update for the qualification.
@@ -50,6 +46,7 @@ export class QualificationService {
    * @returns Observable<SkillGet> - An observable containing the created qualification data.
    */
   createQualification(skillData: SkillPost): Observable<SkillGet> {
+    console.log("Skill was created: " + skillData.skill)
     return this.http.post<SkillGet>(this.baseUrl, skillData);
   }
 
