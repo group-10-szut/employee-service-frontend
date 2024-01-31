@@ -119,7 +119,7 @@ export class QualificationListComponent {
    * @returns {SkillGet[]} The filtered list of qualifications.
    */
   filteredQualifications(): SkillGet[] {
-    return this.skillList.filter((qualification) =>
+    return this.getSkillList().filter((qualification) =>
       this.matchSearchTerm(qualification),
     );
   }
@@ -150,5 +150,9 @@ export class QualificationListComponent {
         console.log(err);
       },
     });
+  }
+
+  private getSkillList(): SkillGet[] {
+    return this.skillList.sort((a, b) => b.id - a.id);
   }
 }

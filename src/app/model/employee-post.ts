@@ -7,5 +7,5 @@ export interface EmployeePost {
   postcode: string;
   city: string;
   phone: string;
-  skillSet: SkillPost[];
+  skillSet: number[];
 }

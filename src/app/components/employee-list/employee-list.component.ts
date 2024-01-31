@@ -10,6 +10,8 @@ import { QualificationService } from '../../services/qualification.service';
 import { Subscription } from 'rxjs';
 import { EmployeePost } from '../../model/employee-post';
 import { SkillPost } from '../../model/skill-post';
+import { ShareService } from '../../services/share.service';
+import { AddEmployeeFormularComponent } from '../add-employee-formular/add-employee-formular.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -21,9 +23,10 @@ import { SkillPost } from '../../model/skill-post';
     AddEmployeeButtonComponent,
     FooterComponent,
     FormsModule,
+    AddEmployeeFormularComponent
   ],
   templateUrl: './employee-list.component.html',
-  styleUrl: './employee-list.component.css',
+  styleUrl: './employee-list.component.css'
 })
 export class EmployeeListComponent {
   searchTerm: string = '';
@@ -32,10 +35,11 @@ export class EmployeeListComponent {
   employeeList: EmployeeGet[] = [];
   editEmployees: EmployeeGet | undefined;
   selectedSkill: string = '';
+  protected readonly Math = Math;
 
   constructor(
     private employeeService: EmployeeService,
-    private qualificationService: QualificationService,
+    private qualificationService: QualificationService
   ) {
     this.loadEmployeeList();
     this.loadSkills();
@@ -88,7 +92,7 @@ export class EmployeeListComponent {
       postcode: employee.postcode,
       city: employee.city,
       phone: employee.phone,
-      skillSet: skillPostList,
+      skillSet: employee.skillSet.map((skill) => skill.id),
     };
     this.employeeService
       .updateEmployeeById(employee.id, employeePost)
@@ -221,6 +225,5 @@ export class EmployeeListComponent {
       },
     });
   }
-
-  protected readonly Math = Math;
 }
+

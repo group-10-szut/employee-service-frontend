@@ -65,6 +65,7 @@ export class EmployeeService {
    * @returns Observable<EmployeeGet> - An observable containing the created employee data.
    */
   public createEmployee(employeeData: EmployeePost): Observable<EmployeeGet> {
+    console.log("Employee was created: " + employeeData.lastName)
     return this.http.post<EmployeeGet>(this.baseUrl, employeeData);
   }
 
