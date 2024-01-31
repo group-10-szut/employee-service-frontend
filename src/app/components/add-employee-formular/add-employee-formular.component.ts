@@ -65,6 +65,7 @@ export class AddEmployeeFormularComponent {
       next: () => {
         //Erfolgreiche Verarbeitung der gespeicherten Daten
         console.log('Employee wurde erfolgreich gespeichert:');
+        this.shareService.triggerEmployeeCreated();
       },
       error: (error) => {
         //Fehlerbehandlung bei Speicherfehler

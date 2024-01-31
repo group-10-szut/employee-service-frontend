@@ -100,3 +100,5 @@ Des Weiteren ist der Client mit der Bezeichnung employee-management-service-fron
 2. Wenn in Firefox keine Mitarbeiter angezeigt werden bitte die Sicherheit ausstellen :)
 
 3. Die Mitarbeiterbilder werden random zugewiesen.
+
+4. Aus irgendeinem undebannten Grund kann man nicht alle Qualifikationen löschen. Aber das ist nicht unser Fehler (HEH)

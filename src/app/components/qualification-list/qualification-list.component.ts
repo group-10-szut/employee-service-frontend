@@ -7,6 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { QualificationService } from '../../services/qualification.service';
 import { SkillPost } from '../../model/skill-post';
 import { SkillEmployees } from '../../model/skill-employees';
+import { ConfirmationComponent } from '../confirmation-fenster/confirmation-fenster.component';
+import { InfoFensterComponent } from '../info-fenster/info-fenster.component';
+import { ShareService } from '../../services/share.service';
 
 @Component({
   selector: 'app-qualification-list',
@@ -16,6 +19,8 @@ import { SkillEmployees } from '../../model/skill-employees';
     AddQualificationButtonComponent,
     FooterComponent,
     FormsModule,
+    ConfirmationComponent,
+    InfoFensterComponent
   ],
   templateUrl: './qualification-list.component.html',
   styleUrl: './qualification-list.component.css',
@@ -26,9 +31,21 @@ export class QualificationListComponent {
   editSkills: SkillGet | undefined;
   skillList: SkillGet[] = [];
   skilledEmployeeList: SkillEmployees | undefined;
+  showConfirmation: boolean = false;
+  showInfo: boolean = false;
+  qualificationToDeleteId: number | null = null;
 
-  constructor(private service: QualificationService) {
+  constructor(private service: QualificationService, private shareService: ShareService) {
     this.loadSkills();
+    this.shareService.isQualificationCreated.subscribe({
+      next: (skill) => {
+        console.log('Neue Qualifikation wurde angelegt');
+        this.loadSkills();
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    })
   }
 
   /**
@@ -68,6 +85,39 @@ export class QualificationListComponent {
         console.log('Anfrgae abgeschlossen');
       },
     });
+  }
+
+  deleteQualification(id: number): void {
+    // Show confirmation window
+    this.showConfirmation = true;
+    this.qualificationToDeleteId = id;
+  }
+
+  onConfirmationResult(confirmed: boolean): void {
+    if (confirmed) {
+      // User confirmed deletion, call the service method
+      debugger;
+      this.service.deleteQualificationById(this.qualificationToDeleteId!)
+        .subscribe({
+          next: () => {
+            // Deletion successful, show info window
+            this.showInfo = true;
+            this.loadSkills(); // Refresh qualification list if needed
+          },
+          error: (error) => {
+            console.error('Error deleting qualification:', error);
+          },
+        });
+    }
+
+    // Reset variables
+    this.showConfirmation = false;
+    this.qualificationToDeleteId = null;
+  }
+
+  onInfoClosed(): void {
+    // Hide info window
+    this.showInfo = false;
   }
 
   /**

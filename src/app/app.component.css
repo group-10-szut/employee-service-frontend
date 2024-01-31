@@ -5,6 +5,7 @@
 .logo {
   width: 200px;
   height: auto;
+  cursor: pointer;
 }
 #logout {
   position: fixed;

@@ -28,6 +28,7 @@ export class AddQualificationFormularComponent {
       next: () => {
         //Erfolgreiche Verarbeitung der gespeicherten Daten
         console.log('Qualifikation wurde erfolgreich gespeichert:');
+        this.shareService.triggerQualificationCreated();
       },
       error: (error) => {
         //Fehlerbehandlung bei Speicherfehler

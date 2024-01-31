@@ -10,8 +10,10 @@ import { QualificationService } from '../../services/qualification.service';
 import { Subscription } from 'rxjs';
 import { EmployeePost } from '../../model/employee-post';
 import { SkillPost } from '../../model/skill-post';
-import { ShareService } from '../../services/share.service';
 import { AddEmployeeFormularComponent } from '../add-employee-formular/add-employee-formular.component';
+import { ConfirmationComponent } from '../confirmation-fenster/confirmation-fenster.component';
+import { InfoFensterComponent } from '../info-fenster/info-fenster.component';
+import { ShareService } from '../../services/share.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -23,7 +25,9 @@ import { AddEmployeeFormularComponent } from '../add-employee-formular/add-emplo
     AddEmployeeButtonComponent,
     FooterComponent,
     FormsModule,
-    AddEmployeeFormularComponent
+    AddEmployeeFormularComponent,
+    ConfirmationComponent,
+    InfoFensterComponent
   ],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css'
@@ -36,11 +40,24 @@ export class EmployeeListComponent {
   editEmployees: EmployeeGet | undefined;
   selectedSkill: string = '';
   protected readonly Math = Math;
+  showConfirmation: boolean = false;
+  employeeToDeleteId: number | null = null;
+  showInfo: boolean = false;
 
   constructor(
     private employeeService: EmployeeService,
-    private qualificationService: QualificationService
+    private qualificationService: QualificationService,
+    private shareService: ShareService
   ) {
+    this.shareService.isEmployeeCreated.subscribe({
+      next: () => {
+        console.log('Employee erforgreich angelegt');
+        this.loadEmployeeList();
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    })
     this.loadEmployeeList();
     this.loadSkills();
   }
@@ -100,6 +117,7 @@ export class EmployeeListComponent {
         next: () => {
           //Erfolgreiche Verarbeitung der gespeicherten Daten
           console.log('Daten erfolgreich gespeichert:');
+          this.loadEmployeeList();
         },
         error: (error) => {
           //Fehlerbehandlung bei Speicherfehler
@@ -147,6 +165,7 @@ export class EmployeeListComponent {
     this.employeeService.deleteQualificationById(id, skillPost).subscribe({
       next: (response) => {
         console.log('Qualifikation gelöscht', response);
+        this.loadEmployeeList();
       },
       error: (error) => {
         console.log('Fehler beim Löschen der Qualifikation', error);
@@ -155,7 +174,36 @@ export class EmployeeListComponent {
         console.log('Löschen der Qualifikation abgeschlossen');
       },
     });
-    this.loadEmployeeList();
+  }
+
+  deleteEmployee(employee: EmployeeGet): void {
+    // Show the confirmation window
+    this.showConfirmation = true;
+    this.employeeToDeleteId = employee.id;
+  }
+
+  onConfirmationResult(confirmed: boolean): void {
+      if (confirmed) {
+          // User confirmed deletion, call the service method
+          this.employeeService.deleteEmployeeById(this.employeeToDeleteId!)
+              .subscribe(() => {
+                  this.showInfo = true;
+                  // Refresh employee list
+                  this.loadEmployeeList();
+              },
+                  error => {
+                      console.error('Error deleting the Employee:', error);
+                  });
+      }
+
+      // Reset variables
+      this.showConfirmation = false;
+      this.employeeToDeleteId = null;
+  }
+
+  onInfoClosed(): void {
+      // Hide info window
+      this.showInfo = false;
   }
 
   /**
