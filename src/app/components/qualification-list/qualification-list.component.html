@@ -1,10 +1,9 @@
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th><span>ID</span></th>
-      <th><span>Qualifikation</span></th>
-      <th>
+      <th><p>ID</p></th>
+      <th><p>Qualifikation</p></th>
+      <th class="right-column">
         <input
           type="text"
           placeholder="Suche"
@@ -18,55 +17,66 @@
     @for (skill of filteredQualifications(); track skill) {
       <tr>
         @if (!toEdit(skill)) {
-          <td></td>
           <td>
-            <span>{{ skill?.id }}</span>
+            <p>{{ skill?.id }}</p>
           </td>
           <td>
-            <span class="skill">{{ skill?.skill }}</span>
-            <div class="skilled" [hidden]="expandedSkillID !== skill.id">
-              <div class="skilled-employee">
-                <span>TODO Insert Persons here!</span>
-              </div>
+            <div class="skill">{{ skill?.skill }}</div>
+            <div
+              class="skilled-employee-container"
+              [hidden]="expandedSkillID !== skill.id"
+            >
+              @if (skilledEmployeeList) {
+                @for (
+                  skilledEmployee of skilledEmployeeList.employees;
+                  track skilledEmployee
+                ) {
+                  <div class="skilled-employee">
+                    {{ skilledEmployee.firstName }}
+                    {{ skilledEmployee.lastName }}
+                  </div>
+                }
+              }
             </div>
           </td>
-          <td>
-            <span
-              *ngIf="expandedSkillID !== skill.id"
-              class="material-symbols-outlined"
-              title="Weitere Infos"
-              (click)="toggleExpansion(skill.id)"
-            >
-              expand_circle_down
-            </span>
-            <span
-              *ngIf="expandedSkillID === skill.id"
-              class="material-symbols-outlined"
-              title="Weitere Infos"
-              (click)="toggleExpansion(skill.id)"
-            >
-              expand_circle_up
-            </span>
-            <span
-              class="material-symbols-outlined"
-              title="Bearbeiten"
-              (click)="edit(skill)"
-            >
-              build_circle
-            </span>
-            <span
-              class="material-symbols-outlined"
-              id="delete-btn"
-              title="Löschen"
-            >
-              do_not_disturb_on
-            </span>
+          <td class="right-column">
+            <div class="icons-container">
+              <span
+                *ngIf="expandedSkillID !== skill.id"
+                class="material-symbols-outlined"
+                title="Weitere Infos"
+                (click)="toggleExpansion(skill.id)"
+              >
+                expand_circle_down
+              </span>
+              <span
+                *ngIf="expandedSkillID === skill.id"
+                class="material-symbols-outlined"
+                title="Weniger Infos"
+                (click)="toggleExpansion(skill.id)"
+              >
+                expand_circle_up
+              </span>
+              <span
+                class="material-symbols-outlined"
+                title="Bearbeiten"
+                (click)="edit(skill)"
+              >
+                build_circle
+              </span>
+              <span
+                class="material-symbols-outlined"
+                id="delete-btn"
+                title="Löschen"
+              >
+                do_not_disturb_on
+              </span>
+            </div>
           </td>
         }
         @if (toEdit(skill)) {
-          <td></td>
           <td>
-            <span>{{ skill?.id }}</span>
+            <p>{{ skill?.id }}</p>
           </td>
           <td>
             <input
@@ -76,19 +86,21 @@
               [(ngModel)]="skill.skill"
             />
           </td>
-          <td>
-            <span
-              class="material-symbols-outlined"
-              title="Abspeichern"
-              (click)="save(skill)"
-              >save</span
-            >
-            <span
-              class="material-symbols-outlined"
-              title="Abbrechen"
-              (click)="cancelEdit()"
-              >cancel</span
-            >
+          <td class="right-column">
+            <div class="icons-container">
+              <span
+                class="material-symbols-outlined"
+                title="Abspeichern"
+                (click)="save(skill)"
+                >save</span
+              >
+              <span
+                class="material-symbols-outlined"
+                title="Abbrechen"
+                (click)="cancelEdit()"
+                >cancel</span
+              >
+            </div>
           </td>
         }
       </tr>

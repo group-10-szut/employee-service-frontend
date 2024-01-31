@@ -95,5 +95,8 @@ Des Weiteren ist der Client mit der Bezeichnung employee-management-service-fron
 
 # Bugs
 
-Trage hier die Features ein, die nicht funktionieren. Beschreibe den jeweiligen Fehler. 
+1. Trage hier die Features ein, die nicht funktionieren. Beschreibe den jeweiligen Fehler. 
 
+2. Wenn in Firefox keine Mitarbeiter angezeigt werden bitte die Sicherheit ausstellen :)
+
+3. Die Mitarbeiterbilder werden random zugewiesen.
